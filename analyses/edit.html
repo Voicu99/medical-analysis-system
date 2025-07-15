@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}Editeaza Analiza - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="fas fa-edit text-primary"></i> Editeaza Analiza
+            </h1>
+            <div>
+                <a href="{{ url_for('view_analysis', id=analysis.id) }}" class="btn btn-outline-info me-2">
+                    <i class="fas fa-eye"></i> Vezi Detalii
+                </a>
+                <a href="{{ url_for('analyses_list') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Inapoi la Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-flask"></i> 
+                    Editeaza: {{ analysis.tip_analiza }}
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="needs-validation" novalidate>
+                    <!-- Pacient -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <label for="patient_id" class="form-label">
+                                <i class="fas fa-user"></i> Pacient <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="patient_id" name="patient_id" required>
+                                <option value="">Selectati pacientul</option>
+                                {% for patient in patients %}
+                                    <option value="{{ patient.id }}" 
+                                            {% if patient.id == analysis.patient_id %}selected{% endif %}>
+                                        {{ patient.nume }} {{ patient.prenume }} - CNP: {{ patient.cnp }} ({{ patient.varsta }} ani, {{ 'Masculin' if patient.sex == 'M' else 'Feminin' }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                Selectarea pacientului este obligatorie.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Tip Analiza -->
+                        <div class="col-md-6 mb-3">
+                            <label for="tip_analiza" class="form-label">
+                                <i class="fas fa-flask"></i> Tip Analiza <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="tip_analiza" name="tip_analiza" required
+                                   value="{{ analysis.tip_analiza }}" 
+                                   placeholder="Ex: Hemograma completa, Glicemie, Profilul lipidic" 
+                                   maxlength="200" list="analize-comune">
+                            <datalist id="analize-comune">
+                                <option value="Hemograma completa">
+                                <option value="Glicemie">
+                                <option value="Profilul lipidic">
+                                <option value="TSH">
+                                <option value="Creatinina">
+                                <option value="ALAT/ASAT">
+                                <option value="Uree">
+                                <option value="Colesterol total">
+                                <option value="Trigliceride">
+                                <option value="HDL Colesterol">
+                                <option value="LDL Colesterol">
+                                <option value="Acid uric">
+                                <option value="Bilirubina">
+                                <option value="Proteina C reactiva">
+                                <option value="VSH">
+                                <option value="Examen complet de urina">
+                                <option value="Vitamina D">
+                                <option value="Vitamina B12">
+                                <option value="Fier seric">
+                                <option value="Ferritina">
+                            </datalist>
+                            <div class="invalid-feedback">
+                                Tipul analizei este obligatoriu.
+                            </div>
+                        </div>
+
+                        <!-- Laborator -->
+                        <div class="col-md-6 mb-3">
+                            <label for="laborator" class="form-label">
+                                <i class="fas fa-hospital"></i> Laborator
+                            </label>
+                            <input type="text" class="form-control" id="laborator" name="laborator"
+                                   value="{{ analysis.laborator or '' }}"
+                                   placeholder="Ex: Synevo, MedLife, Regina Maria" maxlength="100"
+                                   list="laboratoare-comune">
+                            <datalist id="laboratoare-comune">
+                                <option value="Synevo">
+                                <option value="MedLife">
+                                <option value="Regina Maria">
+                                <option value="Bioclinica">
+                                <option value="Lifecare">
+                                <option value="Sanador">
+                                <option value="Medicover">
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Data Recoltare -->
+                        <div class="col-md-6 mb-3">
+                            <label for="data_recoltare" class="form-label">
+                                <i class="fas fa-calendar"></i> Data Recoltare <span class="text-danger">*</span>
+                            </label>
+                            <input type="date" class="form-control" id="data_recoltare" name="data_recoltare" required
+                                   value="{{ analysis.data_recoltare.strftime('%Y-%m-%d') if analysis.data_recoltare else '' }}">
+                            <div class="invalid-feedback">
+                                Data recoltarii este obligatorie.
+                            </div>
+                        </div>
+
+                        <!-- Data Rezultat -->
+                        <div class="col-md-6 mb-3">
+                            <label for="data_rezultat" class="form-label">
+                                <i class="fas fa-calendar-check"></i> Data Rezultat <span class="text-danger">*</span>
+                            </label>
+                            <input type="date" class="form-control" id="data_rezultat" name="data_rezultat" required
+                                   value="{{ analysis.data_rezultat.strftime('%Y-%m-%d') if analysis.data_rezultat else '' }}">
+                            <div class="invalid-feedback">
+                                Data rezultatului este obligatorie.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medic -->
+                    <div class="mb-3">
+                        <label for="medic" class="form-label">
+                            <i class="fas fa-user-md"></i> Medic
+                        </label>
+                        <input type="text" class="form-control" id="medic" name="medic"
+                               value="{{ analysis.medic or '' }}"
+                               placeholder="Ex: Dr. Popescu Ana, Dr. Ionescu Mihai" maxlength="100"
+                               list="medici-comuni">
+                        <datalist id="medici-comuni">
+                            <option value="Dr. Popescu Ana">
+                            <option value="Dr. Ionescu Mihai">
+                            <option value="Dr. Vasilescu Elena">
+                            <option value="Dr. Radu Cristina">
+                            <option value="Dr. Georgescu Alexandru">
+                            <option value="Dr. Marinescu Maria">
+                        </datalist>
+                    </div>
+
+                    <!-- Rezultat -->
+                    <div class="mb-3">
+                        <label for="rezultat" class="form-label">
+                            <i class="fas fa-clipboard-list"></i> Rezultat <span class="text-danger">*</span>
+                        </label>
+                        <textarea class="form-control" id="rezultat" name="rezultat" rows="4" required
+                                  placeholder="Introduceti rezultatele analizei"
+                                  maxlength="2000">{{ analysis.rezultat }}</textarea>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Includeti toate valorile importante si unitatile de masura
+                        </div>
+                        <div class="invalid-feedback">
+                            Rezultatul analizei este obligatoriu.
+                        </div>
+                    </div>
+
+                    <!-- Valori Normale -->
+                    <div class="mb-3">
+                        <label for="valori_normale" class="form-label">
+                            <i class="fas fa-ruler"></i> Valori Normale de Referinta
+                        </label>
+                        <input type="text" class="form-control" id="valori_normale" name="valori_normale"
+                               value="{{ analysis.valori_normale or '' }}"
+                               placeholder="Ex: Hb: 12-15 g/dl (F), 14-17 g/dl (M)"
+                               maxlength="100">
+                    </div>
+
+                    <!-- Observatii -->
+                    <div class="mb-4">
+                        <label for="observatii" class="form-label">
+                            <i class="fas fa-sticky-note"></i> Observatii Medicale
+                        </label>
+                        <textarea class="form-control" id="observatii" name="observatii" rows="3"
+                                  placeholder="Observatii, recomandari medicale sau note suplimentare"
+                                  maxlength="1000">{{ analysis.observatii or '' }}</textarea>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Butoane -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('view_analysis', id=analysis.id) }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times"></i> Anuleaza
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Actualizeaza Analiza
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Informatii despre analiza -->
+        <div class="card mt-3">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="fas fa-info-circle text-info"></i> Informatii Analiza
+                </h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><strong>ID Analiza:</strong> #{{ analysis.id }}</li>
+                            <li><strong>Data crearii:</strong> {{ analysis.created_at.strftime('%d.%m.%Y %H:%M') if analysis.created_at else 'N/A' }}</li>
+                            <li><strong>Pacient:</strong> {{ analysis.patient.nume }} {{ analysis.patient.prenume }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="fas fa-check text-success"></i> Campurile cu <span class="text-danger">*</span> sunt obligatorii</li>
+                            <li><i class="fas fa-check text-success"></i> Data rezultatului trebuie sa fie dupa data recoltarii</li>
+                            <li><i class="fas fa-check text-success"></i> Modificarile sunt salvate imediat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Validare date
+    const dataRecoltare = document.getElementById('data_recoltare');
+    const dataRezultat = document.getElementById('data_rezultat');
+
+    function validateDates() {
+        const recoltareDate = new Date(dataRecoltare.value);
+        const rezultatDate = new Date(dataRezultat.value);
+        
+        if (recoltareDate && rezultatDate && rezultatDate < recoltareDate) {
+            dataRezultat.setCustomValidity('Data rezultatului nu poate fi anterioara datei recoltarii');
+        } else {
+            dataRezultat.setCustomValidity('');
+        }
+    }
+
+    dataRecoltare.addEventListener('change', validateDates);
+    dataRezultat.addEventListener('change', validateDates);
+
+    // Evidentiez modificari
+    const form = document.querySelector('form');
+    const originalValues = {};
+    
+    // Salveaza valorile originale
+    Array.from(form.elements).forEach(element => {
+        if (element.name) {
+            originalValues[element.name] = element.value;
+        }
+    });
+    
+    // Monitorizeaza modificarile
+    Array.from(form.elements).forEach(element => {
+        if (element.name) {
+            element.addEventListener('input', function() {
+                if (this.value !== originalValues[this.name]) {
+                    this.classList.add('border-warning');
+                } else {
+                    this.classList.remove('border-warning');
+                }
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

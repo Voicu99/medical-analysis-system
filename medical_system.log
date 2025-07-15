@@ -1,0 +1,388 @@
+2025-07-15 17:57:33,165 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.4:5000
+2025-07-15 17:57:33,165 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 17:57:33,179 - werkzeug - INFO -  * Restarting with stat
+2025-07-15 17:57:33,855 - werkzeug - WARNING -  * Debugger is active!
+2025-07-15 17:57:33,858 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-15 17:58:18,273 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 17:58:18] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-07-15 17:58:18,404 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 17:58:18] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-15 17:58:18,416 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 17:58:18] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-15 17:58:18,463 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 17:58:18] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=aK0ASWgje0MbbFeTLGxr HTTP/1.1" 200 -
+2025-07-15 17:58:18,470 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 17:58:18] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-15 18:01:11,569 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.4:5000
+2025-07-15 18:01:11,569 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 18:01:11,571 - werkzeug - INFO -  * Restarting with stat
+2025-07-15 18:01:12,174 - werkzeug - WARNING -  * Debugger is active!
+2025-07-15 18:01:12,177 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-15 18:01:32,286 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:01:32] "GET / HTTP/1.1" 200 -
+2025-07-15 18:01:32,331 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:01:32] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 18:01:40,397 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:01:40] "GET / HTTP/1.1" 200 -
+2025-07-15 18:01:40,424 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:01:40] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 18:01:41,012 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:01:41] "GET / HTTP/1.1" 200 -
+2025-07-15 18:01:41,039 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:01:41] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 18:12:50,382 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.4:5000
+2025-07-15 18:12:50,382 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 18:12:50,383 - werkzeug - INFO -  * Restarting with stat
+2025-07-15 18:12:51,003 - werkzeug - WARNING -  * Debugger is active!
+2025-07-15 18:12:51,005 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-15 18:13:22,012 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:13:22] "GET / HTTP/1.1" 200 -
+2025-07-15 18:13:22,056 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:13:22] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 18:14:30,470 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:14:30] "GET / HTTP/1.1" 200 -
+2025-07-15 18:14:30,512 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:14:30] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 18:14:52,577 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:14:52] "GET / HTTP/1.1" 200 -
+2025-07-15 18:14:52,621 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:14:52] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 18:17:41,259 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.4:5000
+2025-07-15 18:17:41,259 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 18:17:41,261 - werkzeug - INFO -  * Restarting with stat
+2025-07-15 18:17:41,864 - werkzeug - WARNING -  * Debugger is active!
+2025-07-15 18:17:41,867 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-15 18:19:52,060 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:19:52] "GET / HTTP/1.1" 200 -
+2025-07-15 18:19:52,107 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 18:19:52] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 23:50:55,982 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-15 23:50:55,983 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 23:50:55,995 - werkzeug - INFO -  * Restarting with stat
+2025-07-15 23:50:56,553 - werkzeug - WARNING -  * Debugger is active!
+2025-07-15 23:50:56,558 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-15 23:51:28,019 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:28] "GET / HTTP/1.1" 200 -
+2025-07-15 23:51:28,336 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:28] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 23:51:34,302 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:34] "[35m[1mGET /patients/add HTTP/1.1[0m" 500 -
+2025-07-15 23:51:34,454 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:34] "GET /patients/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-15 23:51:34,457 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:34] "GET /patients/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-15 23:51:34,494 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:34] "GET /patients/add?__debugger__=yes&cmd=resource&f=console.png&s=u0xdCI01aPiRdRV32JCq HTTP/1.1" 200 -
+2025-07-15 23:51:34,505 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:34] "GET /patients/add?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-15 23:51:41,264 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:41] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 23:51:42,798 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:42] "[35m[1mGET /analyses/add HTTP/1.1[0m" 500 -
+2025-07-15 23:51:42,824 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:42] "GET /analyses/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-15 23:51:42,825 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:42] "GET /analyses/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-15 23:51:42,835 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:42] "GET /analyses/add?__debugger__=yes&cmd=resource&f=console.png&s=u0xdCI01aPiRdRV32JCq HTTP/1.1" 200 -
+2025-07-15 23:51:42,848 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:42] "GET /analyses/add?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-15 23:51:44,631 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:44] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 23:51:46,392 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:46] "[35m[1mGET /patients HTTP/1.1[0m" 500 -
+2025-07-15 23:51:46,418 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:46] "GET /patients?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-15 23:51:46,418 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:46] "GET /patients?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-15 23:51:46,429 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:46] "GET /patients?__debugger__=yes&cmd=resource&f=console.png&s=u0xdCI01aPiRdRV32JCq HTTP/1.1" 200 -
+2025-07-15 23:51:46,444 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:46] "GET /patients?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-15 23:51:47,990 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:47] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 23:51:49,309 - __main__ - INFO - Accesare lista analize
+2025-07-15 23:51:49,317 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:49] "[35m[1mGET /analyses HTTP/1.1[0m" 500 -
+2025-07-15 23:51:49,343 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:49] "GET /analyses?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-15 23:51:49,343 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:49] "GET /analyses?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-15 23:51:49,354 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:49] "GET /analyses?__debugger__=yes&cmd=resource&f=console.png&s=u0xdCI01aPiRdRV32JCq HTTP/1.1" 200 -
+2025-07-15 23:51:49,367 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:51:49] "GET /analyses?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-15 23:52:42,454 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:52:42] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-15 23:53:00,445 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:53:00] "[35m[1mGET /analyses/edit/1 HTTP/1.1[0m" 500 -
+2025-07-15 23:53:00,471 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:53:00] "GET /analyses/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-15 23:53:00,472 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:53:00] "GET /analyses/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-15 23:53:00,484 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:53:00] "GET /analyses/edit/1?__debugger__=yes&cmd=resource&f=console.png&s=u0xdCI01aPiRdRV32JCq HTTP/1.1" 200 -
+2025-07-15 23:53:00,498 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:53:00] "GET /analyses/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-15 23:53:11,415 - werkzeug - INFO - 127.0.0.1 - - [15/Jul/2025 23:53:11] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:06:22,767 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:06:22,768 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:06:22,769 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:06:23,323 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:06:23,325 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:06:37,544 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:37] "GET / HTTP/1.1" 200 -
+2025-07-16 00:06:37,682 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:37] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:06:39,853 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:39] "[35m[1mGET /patients/add HTTP/1.1[0m" 500 -
+2025-07-16 00:06:39,985 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:39] "[36mGET /patients/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:06:39,986 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:39] "[36mGET /patients/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:06:40,019 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:40] "GET /patients/add?__debugger__=yes&cmd=resource&f=console.png&s=vbIEpjDEaRPaaRJoTyMf HTTP/1.1" 200 -
+2025-07-16 00:06:41,990 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:41] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:06:44,060 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:44] "[35m[1mGET /analyses/add HTTP/1.1[0m" 500 -
+2025-07-16 00:06:44,085 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:44] "[36mGET /analyses/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:06:44,085 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:44] "[36mGET /analyses/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:06:44,098 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:44] "GET /analyses/add?__debugger__=yes&cmd=resource&f=console.png&s=vbIEpjDEaRPaaRJoTyMf HTTP/1.1" 200 -
+2025-07-16 00:06:46,088 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:46] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:06:47,429 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:47] "[35m[1mGET /patients HTTP/1.1[0m" 500 -
+2025-07-16 00:06:47,454 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:47] "[36mGET /patients?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:06:47,455 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:47] "[36mGET /patients?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:06:47,466 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:47] "GET /patients?__debugger__=yes&cmd=resource&f=console.png&s=vbIEpjDEaRPaaRJoTyMf HTTP/1.1" 200 -
+2025-07-16 00:06:49,335 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:49] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:06:51,200 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:06:51,210 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:51] "[35m[1mGET /analyses HTTP/1.1[0m" 500 -
+2025-07-16 00:06:51,235 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:51] "[36mGET /analyses?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:06:51,236 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:51] "[36mGET /analyses?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:06:51,249 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:51] "GET /analyses?__debugger__=yes&cmd=resource&f=console.png&s=vbIEpjDEaRPaaRJoTyMf HTTP/1.1" 200 -
+2025-07-16 00:06:53,149 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:53] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:06:55,145 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:55] "[35m[1mGET /reports/analysis/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:06:55,173 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:55] "GET /reports/analysis/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-16 00:06:55,174 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:55] "GET /reports/analysis/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-16 00:06:55,186 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:55] "GET /reports/analysis/4?__debugger__=yes&cmd=resource&f=console.png&s=vbIEpjDEaRPaaRJoTyMf HTTP/1.1" 200 -
+2025-07-16 00:06:55,199 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:06:55] "GET /reports/analysis/4?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-16 00:07:06,650 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:07:06] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:07:10,993 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:07:10] "[35m[1mGET /analyses/edit/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:07:11,023 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:07:11] "GET /analyses/edit/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-16 00:07:11,023 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:07:11] "GET /analyses/edit/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-16 00:07:11,034 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:07:11] "GET /analyses/edit/4?__debugger__=yes&cmd=resource&f=console.png&s=vbIEpjDEaRPaaRJoTyMf HTTP/1.1" 200 -
+2025-07-16 00:07:11,041 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:07:11] "GET /analyses/edit/4?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-16 00:14:40,287 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:14:40,288 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:14:40,289 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:14:40,834 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:14:40,837 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:14:53,036 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:53] "GET / HTTP/1.1" 200 -
+2025-07-16 00:14:53,176 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:53] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:14:56,197 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:56] "[35m[1mGET /patients/add HTTP/1.1[0m" 500 -
+2025-07-16 00:14:56,320 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:56] "[36mGET /patients/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:14:56,323 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:56] "[36mGET /patients/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:14:56,355 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:56] "GET /patients/add?__debugger__=yes&cmd=resource&f=console.png&s=zbcAPLPcHdtgssH5b5lr HTTP/1.1" 200 -
+2025-07-16 00:14:58,834 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:14:58] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:15:00,086 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:00] "[35m[1mGET /analyses/add HTTP/1.1[0m" 500 -
+2025-07-16 00:15:00,114 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:00] "[36mGET /analyses/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:15:00,115 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:00] "[36mGET /analyses/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:15:00,126 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:00] "GET /analyses/add?__debugger__=yes&cmd=resource&f=console.png&s=zbcAPLPcHdtgssH5b5lr HTTP/1.1" 200 -
+2025-07-16 00:15:01,578 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:01] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:15:02,727 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:02] "[35m[1mGET /patients HTTP/1.1[0m" 500 -
+2025-07-16 00:15:02,755 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:02] "[36mGET /patients?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:15:02,756 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:02] "[36mGET /patients?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:15:02,770 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:02] "GET /patients?__debugger__=yes&cmd=resource&f=console.png&s=zbcAPLPcHdtgssH5b5lr HTTP/1.1" 200 -
+2025-07-16 00:15:04,186 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:04] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:15:05,220 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:15:05,231 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:05] "[35m[1mGET /analyses HTTP/1.1[0m" 500 -
+2025-07-16 00:15:05,260 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:05] "[36mGET /analyses?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:15:05,261 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:05] "[36mGET /analyses?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:15:05,274 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:05] "GET /analyses?__debugger__=yes&cmd=resource&f=console.png&s=zbcAPLPcHdtgssH5b5lr HTTP/1.1" 200 -
+2025-07-16 00:15:07,223 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:07] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:15:09,348 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:09] "[35m[1mGET /reports/analysis/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:15:09,378 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:09] "[36mGET /reports/analysis/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:15:09,379 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:09] "[36mGET /reports/analysis/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:15:09,393 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:09] "GET /reports/analysis/4?__debugger__=yes&cmd=resource&f=console.png&s=zbcAPLPcHdtgssH5b5lr HTTP/1.1" 200 -
+2025-07-16 00:15:11,092 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:11] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:15:12,820 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:12] "[35m[1mGET /analyses/edit/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:15:12,849 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:12] "[36mGET /analyses/edit/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:15:12,853 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:12] "[36mGET /analyses/edit/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:15:12,865 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:15:12] "GET /analyses/edit/4?__debugger__=yes&cmd=resource&f=console.png&s=zbcAPLPcHdtgssH5b5lr HTTP/1.1" 200 -
+2025-07-16 00:23:32,415 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:23:32,416 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:23:32,417 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:23:32,963 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:23:32,965 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:23:45,921 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:23:45] "GET / HTTP/1.1" 200 -
+2025-07-16 00:23:46,060 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:23:46] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:23:48,491 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:23:48] "[35m[1mGET /patients/add HTTP/1.1[0m" 500 -
+2025-07-16 00:23:48,613 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:23:48] "[36mGET /patients/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:23:48,614 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:23:48] "[36mGET /patients/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:23:48,650 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:23:48] "GET /patients/add?__debugger__=yes&cmd=resource&f=console.png&s=y241npyB62LY8cDCViFM HTTP/1.1" 200 -
+2025-07-16 00:24:09,955 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:09] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:24:11,129 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:11] "[35m[1mGET /analyses/add HTTP/1.1[0m" 500 -
+2025-07-16 00:24:11,159 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:11] "[36mGET /analyses/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:24:11,159 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:11] "[36mGET /analyses/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:24:11,174 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:11] "GET /analyses/add?__debugger__=yes&cmd=resource&f=console.png&s=y241npyB62LY8cDCViFM HTTP/1.1" 200 -
+2025-07-16 00:24:27,339 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:27] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:24:28,725 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:28] "[35m[1mGET /patients HTTP/1.1[0m" 500 -
+2025-07-16 00:24:28,751 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:28] "[36mGET /patients?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:24:28,752 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:28] "[36mGET /patients?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:24:28,764 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:28] "GET /patients?__debugger__=yes&cmd=resource&f=console.png&s=y241npyB62LY8cDCViFM HTTP/1.1" 200 -
+2025-07-16 00:24:41,209 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:41] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:24:42,643 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:24:42,656 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:42] "[35m[1mGET /analyses HTTP/1.1[0m" 500 -
+2025-07-16 00:24:42,684 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:42] "[36mGET /analyses?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:24:42,684 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:42] "[36mGET /analyses?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:24:42,697 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:42] "GET /analyses?__debugger__=yes&cmd=resource&f=console.png&s=y241npyB62LY8cDCViFM HTTP/1.1" 200 -
+2025-07-16 00:24:52,753 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:52] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:24:54,911 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:54] "[35m[1mGET /reports/analysis/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:24:54,937 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:54] "[36mGET /reports/analysis/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:24:54,937 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:54] "[36mGET /reports/analysis/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:24:54,949 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:24:54] "GET /reports/analysis/4?__debugger__=yes&cmd=resource&f=console.png&s=y241npyB62LY8cDCViFM HTTP/1.1" 200 -
+2025-07-16 00:25:03,922 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:25:03] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:25:05,503 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:25:05] "[35m[1mGET /analyses/edit/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:25:05,525 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:25:05] "[36mGET /analyses/edit/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:25:05,525 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:25:05] "[36mGET /analyses/edit/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:25:05,538 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:25:05] "GET /analyses/edit/4?__debugger__=yes&cmd=resource&f=console.png&s=y241npyB62LY8cDCViFM HTTP/1.1" 200 -
+2025-07-16 00:37:20,158 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:37:20,158 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:37:20,160 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:37:20,704 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:37:20,706 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:37:33,447 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:33] "GET / HTTP/1.1" 200 -
+2025-07-16 00:37:33,573 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:33] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:35,492 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:35] "GET /patients/add HTTP/1.1" 200 -
+2025-07-16 00:37:35,524 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:35] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:37,568 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:37] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:39,511 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:39] "GET /analyses/add HTTP/1.1" 200 -
+2025-07-16 00:37:39,541 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:39] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:41,262 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:41] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:42,924 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:42] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:37:42,954 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:42] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:45,723 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:45] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:47,215 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:37:47,238 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:47] "GET /analyses HTTP/1.1" 200 -
+2025-07-16 00:37:47,268 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:47] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:49,961 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:49] "[35m[1mGET /analyses/view/2 HTTP/1.1[0m" 500 -
+2025-07-16 00:37:50,036 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:50] "GET /analyses/view/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-16 00:37:50,037 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:50] "GET /analyses/view/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-16 00:37:50,068 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:50] "GET /analyses/view/2?__debugger__=yes&cmd=resource&f=console.png&s=VFwpu2F9Zv4s0ej5TgYg HTTP/1.1" 200 -
+2025-07-16 00:37:50,076 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:50] "GET /analyses/view/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-16 00:37:52,500 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:52] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:53,332 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:53] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:55,257 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:55] "GET /analyses/edit/4 HTTP/1.1" 200 -
+2025-07-16 00:37:55,287 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:55] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:57,491 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:57] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:37:59,217 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:59] "GET /reports/analysis/4 HTTP/1.1" 200 -
+2025-07-16 00:37:59,246 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:37:59] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:02,103 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:02] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:03,488 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:03] "GET /analyses/add HTTP/1.1" 200 -
+2025-07-16 00:38:03,526 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:03] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:05,800 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:05] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:07,091 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:07] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:38:07,120 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:07] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:09,678 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:09] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:10,978 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:38:10,981 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:10] "GET /analyses HTTP/1.1" 200 -
+2025-07-16 00:38:11,017 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:11] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:12,714 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:12] "GET /analyses/edit/2 HTTP/1.1" 200 -
+2025-07-16 00:38:12,750 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:12] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:14,314 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:14] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:15,981 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:15] "[35m[1mGET /analyses/view/2 HTTP/1.1[0m" 500 -
+2025-07-16 00:38:16,004 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:16] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:38:16,004 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:16] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:38:16,017 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:16] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=console.png&s=VFwpu2F9Zv4s0ej5TgYg HTTP/1.1[0m" 304 -
+2025-07-16 00:38:30,722 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:30] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:49,874 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:49] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:38:57,177 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:57] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:38:57,204 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:38:57] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:39:12,432 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:39:12] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:40:39,035 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:40:39,035 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:40:39,036 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:40:39,580 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:40:39,584 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:40:50,903 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:50] "GET / HTTP/1.1" 200 -
+2025-07-16 00:40:51,039 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:51] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:40:53,050 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:53] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:40:53,080 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:53] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:40:55,582 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:55] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:40:59,734 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:59] "GET /reports/analysis/4 HTTP/1.1" 200 -
+2025-07-16 00:40:59,770 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:40:59] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:41:01,884 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:01] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:41:04,481 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:04] "GET /analyses/edit/4 HTTP/1.1" 200 -
+2025-07-16 00:41:04,516 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:04] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:41:06,328 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:06] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:41:08,100 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:41:08,110 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:08] "GET /analyses HTTP/1.1" 200 -
+2025-07-16 00:41:08,142 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:08] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:41:10,151 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:10] "[35m[1mGET /analyses/view/2 HTTP/1.1[0m" 500 -
+2025-07-16 00:41:10,275 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:10] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:41:10,278 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:10] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:41:10,311 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:10] "GET /analyses/view/2?__debugger__=yes&cmd=resource&f=console.png&s=2E1nNnldTbOR312HJY5U HTTP/1.1" 200 -
+2025-07-16 00:41:18,520 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:18] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:41:50,295 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:50] "[35m[1mGET /analyses/view/2 HTTP/1.1[0m" 500 -
+2025-07-16 00:41:50,321 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:50] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-07-16 00:41:50,323 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:50] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-07-16 00:41:50,330 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:41:50] "[36mGET /analyses/view/2?__debugger__=yes&cmd=resource&f=console.png&s=2E1nNnldTbOR312HJY5U HTTP/1.1[0m" 304 -
+2025-07-16 00:42:50,707 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:42:50] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:42:51,910 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:42:51] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:42:53,127 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:42:53] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:42:53,158 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:42:53] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:43:07,117 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:43:07] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:23,157 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:44:23,157 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:44:23,160 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:44:23,705 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:44:23,707 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:44:34,053 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:34] "GET / HTTP/1.1" 200 -
+2025-07-16 00:44:34,201 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:34] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:36,042 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:36] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:44:36,075 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:36] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:38,461 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:38] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:42,345 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:42] "GET /reports/analysis/4 HTTP/1.1" 200 -
+2025-07-16 00:44:42,381 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:42] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:44,714 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:44] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:46,699 - __main__ - INFO - Accesare lista analize
+2025-07-16 00:44:46,708 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:46] "GET /analyses HTTP/1.1" 200 -
+2025-07-16 00:44:46,738 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:46] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:48,557 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:48] "GET /analyses/view/2 HTTP/1.1" 200 -
+2025-07-16 00:44:48,588 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:48] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:54,233 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:54] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:54,876 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:54] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:44:57,719 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:57] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:44:57,748 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:44:57] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-07-16 00:48:07,024 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:48:07,025 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:48:07,027 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:48:07,573 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:48:07,574 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:48:23,565 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:48:23] "GET / HTTP/1.1" 200 -
+2025-07-16 00:48:23,724 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:48:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-16 00:48:25,273 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:48:25] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:52:08,859 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:52:08,859 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:52:08,863 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:52:09,419 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:52:09,422 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:52:19,621 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:52:19] "GET / HTTP/1.1" 200 -
+2025-07-16 00:52:21,607 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:52:21] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:57:28,612 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:57:28,613 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:57:28,615 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:57:29,177 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:57:29,179 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 00:57:36,793 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:57:36] "GET / HTTP/1.1" 200 -
+2025-07-16 00:57:38,960 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:57:38] "GET /patients HTTP/1.1" 200 -
+2025-07-16 00:58:08,680 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:58:08] "[35m[1mGET /patients/view/4 HTTP/1.1[0m" 500 -
+2025-07-16 00:58:08,794 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:58:08] "GET /patients/view/4?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-07-16 00:58:08,801 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:58:08] "GET /patients/view/4?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-07-16 00:58:08,832 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:58:08] "GET /patients/view/4?__debugger__=yes&cmd=resource&f=console.png&s=6uwJcX9xiK3dp8gIObvo HTTP/1.1" 200 -
+2025-07-16 00:58:08,839 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 00:58:08] "GET /patients/view/4?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-07-16 00:59:58,360 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.3.75:5000
+2025-07-16 00:59:58,360 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-16 00:59:58,362 - werkzeug - INFO -  * Restarting with stat
+2025-07-16 00:59:58,917 - werkzeug - WARNING -  * Debugger is active!
+2025-07-16 00:59:58,918 - werkzeug - INFO -  * Debugger PIN: 948-902-620
+2025-07-16 01:00:03,498 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:03] "GET / HTTP/1.1" 200 -
+2025-07-16 01:00:05,785 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:05] "GET /patients HTTP/1.1" 200 -
+2025-07-16 01:00:07,844 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:07] "GET /patients/view/4 HTTP/1.1" 200 -
+2025-07-16 01:00:11,548 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:11] "GET /patients/edit/4 HTTP/1.1" 200 -
+2025-07-16 01:00:19,170 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:19] "GET /analyses/add HTTP/1.1" 200 -
+2025-07-16 01:00:28,049 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:28] "GET /patients/add HTTP/1.1" 200 -
+2025-07-16 01:00:36,786 - __main__ - INFO - Accesare lista analize
+2025-07-16 01:00:36,798 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:36] "GET /analyses HTTP/1.1" 200 -
+2025-07-16 01:00:39,587 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:39] "GET /analyses/view/2 HTTP/1.1" 200 -
+2025-07-16 01:00:42,932 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:42] "GET /analyses/edit/2 HTTP/1.1" 200 -
+2025-07-16 01:00:48,947 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:48] "GET /patients HTTP/1.1" 200 -
+2025-07-16 01:00:52,722 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:52] "GET /patients?search=&sex=F&age_min=&age_max= HTTP/1.1" 200 -
+2025-07-16 01:00:57,799 - werkzeug - INFO - 127.0.0.1 - - [16/Jul/2025 01:00:57] "GET /patients/add HTTP/1.1" 200 -

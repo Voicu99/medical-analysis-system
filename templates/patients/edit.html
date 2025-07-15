@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}Editeaza Pacient - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="fas fa-user-edit text-primary"></i> Editeaza Pacient
+            </h1>
+            <div>
+                <a href="{{ url_for('view_patient', id=patient.id) }}" class="btn btn-outline-info me-2">
+                    <i class="fas fa-eye"></i> Vezi Detalii
+                </a>
+                <a href="{{ url_for('patients_list') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Inapoi la Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-user-circle"></i> 
+                    Editeaza Informatii: {{ patient.nume }} {{ patient.prenume }}
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="needs-validation" novalidate>
+                    <div class="row">
+                        <!-- Nume -->
+                        <div class="col-md-6 mb-3">
+                            <label for="nume" class="form-label">
+                                <i class="fas fa-user"></i> Nume <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="nume" name="nume" required
+                                   value="{{ patient.nume }}" placeholder="Introduceti numele" maxlength="100">
+                            <div class="invalid-feedback">
+                                Numele este obligatoriu.
+                            </div>
+                        </div>
+
+                        <!-- Prenume -->
+                        <div class="col-md-6 mb-3">
+                            <label for="prenume" class="form-label">
+                                <i class="fas fa-user"></i> Prenume <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="prenume" name="prenume" required
+                                   value="{{ patient.prenume }}" placeholder="Introduceti prenumele" maxlength="100">
+                            <div class="invalid-feedback">
+                                Prenumele este obligatoriu.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- CNP -->
+                        <div class="col-md-6 mb-3">
+                            <label for="cnp" class="form-label">
+                                <i class="fas fa-id-card"></i> CNP <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control font-monospace" id="cnp" name="cnp" required
+                                   value="{{ patient.cnp }}" placeholder="1234567890123" pattern="[0-9]{13}" maxlength="13">
+                            <div class="form-text">
+                                <i class="fas fa-info-circle"></i> CNP-ul trebuie sa aiba exact 13 cifre
+                            </div>
+                            <div class="invalid-feedback">
+                                CNP-ul este obligatoriu si trebuie sa aiba exact 13 cifre.
+                            </div>
+                        </div>
+
+                        <!-- Varsta -->
+                        <div class="col-md-3 mb-3">
+                            <label for="varsta" class="form-label">
+                                <i class="fas fa-birthday-cake"></i> Varsta <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" class="form-control" id="varsta" name="varsta" required
+                                   value="{{ patient.varsta }}" min="0" max="120" placeholder="25">
+                            <div class="invalid-feedback">
+                                Varsta este obligatorie.
+                            </div>
+                        </div>
+
+                        <!-- Sex -->
+                        <div class="col-md-3 mb-3">
+                            <label for="sex" class="form-label">
+                                <i class="fas fa-venus-mars"></i> Sex <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="sex" name="sex" required>
+                                <option value="">Selectati</option>
+                                <option value="M" {% if patient.sex == 'M' %}selected{% endif %}>Masculin</option>
+                                <option value="F" {% if patient.sex == 'F' %}selected{% endif %}>Feminin</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Sexul este obligatoriu.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Telefon -->
+                        <div class="col-md-6 mb-3">
+                            <label for="telefon" class="form-label">
+                                <i class="fas fa-phone"></i> Telefon
+                            </label>
+                            <input type="tel" class="form-control" id="telefon" name="telefon"
+                                   value="{{ patient.telefon or '' }}" placeholder="0722123456" maxlength="20">
+                        </div>
+
+                        <!-- Spatiu gol pentru aliniament -->
+                        <div class="col-md-6 mb-3"></div>
+                    </div>
+
+                    <!-- Adresa -->
+                    <div class="mb-3">
+                        <label for="adresa" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i> Adresa
+                        </label>
+                        <textarea class="form-control" id="adresa" name="adresa" rows="3"
+                                  placeholder="Introduceti adresa completa"
+                                  maxlength="500">{{ patient.adresa or '' }}</textarea>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Butoane -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('patients_list') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times"></i> Anuleaza
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Actualizeaza Pacient
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Informatii pacient -->
+        <div class="card mt-3">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="fas fa-info-circle text-info"></i> Informatii Pacient
+                </h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><strong>ID Pacient:</strong> #{{ patient.id }}</li>
+                            <li><strong>Data inregistrarii:</strong> {{ patient.created_at.strftime('%d.%m.%Y %H:%M') if patient.created_at else 'N/A' }}</li>
+                            <li><strong>Numarul de analize:</strong> {{ patient.analyses|length if patient.analyses else 0 }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="fas fa-check text-success"></i> Campurile cu <span class="text-danger">*</span> sunt obligatorii</li>
+                            <li><i class="fas fa-check text-success"></i> CNP-ul trebuie sa fie unic</li>
+                            <li><i class="fas fa-check text-success"></i> Modificarile sunt salvate imediat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analize recente -->
+        {% if patient.analyses %}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6 class="card-title mb-0">
+                    <i class="fas fa-flask"></i> Analize Recente
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for analysis in patient.analyses[-3:] %}
+                    <div class="col-md-4 mb-2">
+                        <div class="border rounded p-2">
+                            <small class="text-muted">{{ analysis.data_rezultat.strftime('%d.%m.%Y') if analysis.data_rezultat else 'N/A' }}</small>
+                            <div class="fw-semibold">{{ analysis.tip_analiza }}</div>
+                            <a href="{{ url_for('view_analysis', id=analysis.id) }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-eye"></i> Vezi
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if patient.analyses|length > 3 %}
+                <div class="text-center mt-2">
+                    <a href="{{ url_for('view_patient', id=patient.id) }}" class="btn btn-outline-info btn-sm">
+                        <i class="fas fa-list"></i> Vezi toate analizele ({{ patient.analyses|length }})
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Validare CNP in timp real
+    const cnpInput = document.getElementById('cnp');
+    cnpInput.addEventListener('input', function() {
+        // Permite doar cifre
+        this.value = this.value.replace(/[^0-9]/g, '');
+        
+        // Limiteaza la 13 caractere
+        if (this.value.length > 13) {
+            this.value = this.value.substring(0, 13);
+        }
+        
+        // Validare vizuala
+        if (this.value.length === 13) {
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        } else if (this.value.length > 0) {
+            this.classList.remove('is-valid');
+            this.classList.add('is-invalid');
+        } else {
+            this.classList.remove('is-valid', 'is-invalid');
+        }
+    });
+
+    // Formatare automata nume si prenume
+    const numeInput = document.getElementById('nume');
+    const prenumeInput = document.getElementById('prenume');
+    
+    [numeInput, prenumeInput].forEach(input => {
+        input.addEventListener('blur', function() {
+            // Formatare cu prima litera mare
+            this.value = this.value.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        });
+    });
+
+    // Evidentiez modificari
+    const form = document.querySelector('form');
+    const originalValues = {};
+    
+    // Salveaza valorile originale
+    Array.from(form.elements).forEach(element => {
+        if (element.name) {
+            originalValues[element.name] = element.value;
+        }
+    });
+    
+    // Monitorizeaza modificarile
+    Array.from(form.elements).forEach(element => {
+        if (element.name) {
+            element.addEventListener('input', function() {
+                if (this.value !== originalValues[this.name]) {
+                    this.classList.add('border-warning');
+                } else {
+                    this.classList.remove('border-warning');
+                }
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

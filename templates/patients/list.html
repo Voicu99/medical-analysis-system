@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Lista Pacienti - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="fas fa-users text-primary"></i> Lista Pacienti
+            </h1>
+            <a href="{{ url_for('add_patient') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Adauga Pacient
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Filtre si Cautare -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-filter"></i> Filtrare si Cautare
+        </h5>
+    </div>
+    <div class="card-body">
+        <form method="GET" class="row g-3">
+            <div class="col-md-4">
+                <label for="search" class="form-label">Cautare (Nume/Prenume/CNP)</label>
+                <input type="text" class="form-control" id="search" name="search" 
+                       value="{{ search or '' }}" placeholder="Introduceti termenul de cautare">
+            </div>
+            <div class="col-md-2">
+                <label for="sex" class="form-label">Sex</label>
+                <select class="form-select" id="sex" name="sex">
+                    <option value="">Toate</option>
+                    <option value="M" {% if sex_filter == 'M' %}selected{% endif %}>Masculin</option>
+                    <option value="F" {% if sex_filter == 'F' %}selected{% endif %}>Feminin</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="age_min" class="form-label">Varsta min</label>
+                <input type="number" class="form-control" id="age_min" name="age_min" 
+                       value="{{ age_min or '' }}" min="0" max="120">
+            </div>
+            <div class="col-md-2">
+                <label for="age_max" class="form-label">Varsta max</label>
+                <input type="number" class="form-control" id="age_max" name="age_max" 
+                       value="{{ age_max or '' }}" min="0" max="120">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">&nbsp;</label>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fas fa-search"></i> Filtreaza
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista Pacienti -->
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">
+                <i class="fas fa-list"></i> 
+                Pacienti ({{ patients.total if patients.total is defined else patients|length }})
+            </h5>
+        </div>
+    </div>
+    <div class="card-body">
+        {% set patient_list = patients.items if patients.items is defined else patients %}
+        {% if patient_list %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-user"></i> Pacient</th>
+                            <th><i class="fas fa-id-card"></i> CNP</th>
+                            <th><i class="fas fa-birthday-cake"></i> Varsta</th>
+                            <th><i class="fas fa-venus-mars"></i> Sex</th>
+                            <th><i class="fas fa-phone"></i> Telefon</th>
+                            <th><i class="fas fa-flask"></i> Analize</th>
+                            <th><i class="fas fa-cogs"></i> Actiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in patient_list %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar bg-primary text-white rounded-circle me-2" 
+                                         style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                        {{ patient.nume[0] }}{{ patient.prenume[0] }}
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold">{{ patient.nume }} {{ patient.prenume }}</div>
+                                        <small class="text-muted">
+                                            <i class="fas fa-calendar-plus"></i> 
+                                            Inregistrat: {{ patient.created_at.strftime('%d.%m.%Y') if patient.created_at else 'N/A' }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="font-monospace">{{ patient.cnp }}</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">{{ patient.varsta }} ani</span>
+                            </td>
+                            <td>
+                                {% if patient.sex == 'M' %}
+                                    <span class="badge bg-primary">
+                                        <i class="fas fa-mars"></i> Masculin
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-pink" style="background-color: #e91e63 !important;">
+                                        <i class="fas fa-venus"></i> Feminin
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if patient.telefon %}
+                                    <a href="tel:{{ patient.telefon }}" class="text-decoration-none">
+                                        <i class="fas fa-phone text-success"></i> {{ patient.telefon }}
+                                    </a>
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="badge bg-secondary">{{ patient.analyses|length if patient.analyses else 0 }}</span>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ url_for('view_patient', id=patient.id) }}" 
+                                       class="btn btn-outline-info btn-sm" title="Vezi Detalii">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ url_for('edit_patient', id=patient.id) }}" 
+                                       class="btn btn-outline-warning btn-sm" title="Editeaza">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ url_for('delete_patient', id=patient.id) }}" 
+                                       class="btn btn-outline-danger btn-sm" 
+                                       onclick="return confirmDelete('Sigur doriti sa stergeti acest pacient?')"
+                                       title="Sterge">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Nu au fost gasiti pacienti</h5>
+                <p class="text-muted">Adaugati primul pacient pentru a incepe</p>
+                <a href="{{ url_for('add_patient') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Adauga Primul Pacient
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

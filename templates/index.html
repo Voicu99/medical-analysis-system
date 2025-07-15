@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="fas fa-tachometer-alt text-primary"></i> Dashboard
+            </h1>
+            <div class="text-muted">
+                <i class="fas fa-calendar-alt"></i> 
+                <span id="current-date"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-6 col-lg-3">
+        <div class="stats-card">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <div class="stats-number">{{ total_patients or 0 }}</div>
+                    <div class="h6 mb-0">Pacienti Inregistrati</div>
+                </div>
+                <div class="ms-3">
+                    <i class="fas fa-users fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <div class="stats-number">{{ total_analyses or 0 }}</div>
+                    <div class="h6 mb-0">Analize Efectuate</div>
+                </div>
+                <div class="ms-3">
+                    <i class="fas fa-flask fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <div class="stats-number">{{ recent_analyses|length if recent_analyses else 0 }}</div>
+                    <div class="h6 mb-0">Analize Recente</div>
+                </div>
+                <div class="ms-3">
+                    <i class="fas fa-clock fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <div class="stats-number">100%</div>
+                    <div class="h6 mb-0">Sistem Activ</div>
+                </div>
+                <div class="ms-3">
+                    <i class="fas fa-heartbeat fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-bolt"></i> Actiuni Rapide
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('add_patient') }}" class="btn btn-primary w-100">
+                            <i class="fas fa-user-plus"></i> Adauga Pacient
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('add_analysis') }}" class="btn btn-success w-100">
+                            <i class="fas fa-plus-circle"></i> Adauga Analiza
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('patients_list') }}" class="btn btn-info w-100">
+                            <i class="fas fa-list"></i> Vezi Pacienti
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('analyses_list') }}" class="btn btn-warning w-100">
+                            <i class="fas fa-search"></i> Cauta Analize
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Analyses -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-history"></i> Analize Recente
+                    </h5>
+                    <a href="{{ url_for('analyses_list') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-eye"></i> Vezi Toate
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if recent_analyses %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-user"></i> Pacient</th>
+                                    <th><i class="fas fa-flask"></i> Tip Analiza</th>
+                                    <th><i class="fas fa-calendar"></i> Data Rezultat</th>
+                                    <th><i class="fas fa-user-md"></i> Medic</th>
+                                    <th><i class="fas fa-cogs"></i> Actiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for analysis in recent_analyses %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar bg-primary text-white rounded-circle me-2" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                                {{ analysis.patient.nume[0] }}{{ analysis.patient.prenume[0] }}
+                                            </div>
+                                            <div>
+                                                <div class="fw-semibold">{{ analysis.patient.nume }} {{ analysis.patient.prenume }}</div>
+                                                <small class="text-muted">CNP: {{ analysis.patient.cnp }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info">{{ analysis.tip_analiza }}</span>
+                                    </td>
+                                    <td>
+                                        <div>{{ analysis.data_rezultat.strftime('%d.%m.%Y') if analysis.data_rezultat else 'N/A' }}</div>
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock"></i> 
+                                            {{ analysis.created_at.strftime('%H:%M') if analysis.created_at else 'N/A' }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        {% if analysis.medic %}
+                                            <div>{{ analysis.medic }}</div>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="{{ url_for('generate_analysis_report', analysis_id=analysis.id) }}" 
+                                               class="btn btn-outline-primary btn-sm" 
+                                               title="Vezi Raport">
+                                                <i class="fas fa-file-alt"></i>
+                                            </a>
+                                            <a href="{{ url_for('edit_analysis', id=analysis.id) }}" 
+                                               class="btn btn-outline-warning btn-sm" 
+                                               title="Editeaza">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-flask fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Nu exista analize recente</h5>
+                        <p class="text-muted">Adaugati prima analiza pentru a incepe</p>
+                        <a href="{{ url_for('add_analysis') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Adauga Analiza
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Information -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-info-circle"></i> Informatii Sistem
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Versiune</small>
+                            <div class="fw-semibold">v1.0.0</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Status</small>
+                            <div class="fw-semibold text-success">
+                                <i class="fas fa-circle"></i> Activ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Ultima Actualizare</small>
+                            <div class="fw-semibold"><span id="last-update"></span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Dezvoltator</small>
+                            <div class="fw-semibold">IT School Student</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-line"></i> Statistici Rapide
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Analize Astazi</small>
+                            <div class="fw-semibold">{{ recent_analyses|length if recent_analyses else 0 }}</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Pacienti Activi</small>
+                            <div class="fw-semibold">{{ total_patients or 0 }}</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Timp Raspuns</small>
+                            <div class="fw-semibold text-success">< 1s</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <small class="text-muted">Uptime</small>
+                            <div class="fw-semibold text-success">99.9%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Set current date
+document.addEventListener('DOMContentLoaded', function() {
+    const now = new Date();
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        weekday: 'long'
+    };
+    const currentDateElement = document.getElementById('current-date');
+    if (currentDateElement) {
+        currentDateElement.textContent = now.toLocaleDateString('ro-RO', options);
+    }
+    
+    const lastUpdateElement = document.getElementById('last-update');
+    if (lastUpdateElement) {
+        lastUpdateElement.textContent = now.toLocaleDateString('ro-RO');
+    }
+});
+
+// Add hover effects to stats cards
+document.addEventListener('DOMContentLoaded', function() {
+    const statsCards = document.querySelectorAll('.stats-card');
+    statsCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+
+// Animate numbers
+document.addEventListener('DOMContentLoaded', function() {
+    const numbers = document.querySelectorAll('.stats-number');
+    numbers.forEach(number => {
+        const finalValue = parseInt(number.textContent) || 0;
+        if (finalValue > 0 && finalValue < 1000) {
+            let currentValue = 0;
+            const increment = Math.ceil(finalValue / 20);
+            
+            const counter = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= finalValue) {
+                    currentValue = finalValue;
+                    clearInterval(counter);
+                }
+                number.textContent = currentValue;
+            }, 50);
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Raport Analiza</h1>
+    <div class="card">
+        <div class="card-header">
+            <h5>{{ analysis.tip_analiza }}</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Pacient:</strong> {{ analysis.patient.nume }} {{ analysis.patient.prenume }}</p>
+            <p><strong>CNP:</strong> {{ analysis.patient.cnp }}</p>
+            <p><strong>Data:</strong> {{ analysis.data_rezultat.strftime('%d.%m.%Y') if analysis.data_rezultat else 'N/A' }}</p>
+            <p><strong>Rezultat:</strong></p>
+            <pre>{{ analysis.rezultat }}</pre>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block title %}Eroare Server - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+        <div class="card shadow-lg">
+            <div class="card-body py-5">
+                <!-- Iconiță animată -->
+                <div class="error-icon mb-4" style="animation: shake 2s infinite;">
+                    <i class="fas fa-exclamation-triangle fa-6x text-danger"></i>
+                </div>
+                
+                <!-- Codul de eroare -->
+                <h1 class="display-1 text-danger fw-bold mb-3" style="font-size: 8rem;">500</h1>
+                
+                <!-- Titlul erorii -->
+                <h2 class="h3 mb-3 text-dark">Eroare internă de server</h2>
+                
+                <!-- Mesajul explicativ -->
+                <p class="text-muted mb-4 lead">
+                    A apărut o eroare neașteptată pe server. Echipa tehnică a fost notificată automat și lucrează la rezolvarea problemei.
+                </p>
+                
+                <!-- Informații pentru utilizator -->
+                <div class="alert alert-warning">
+                    <h6 class="alert-heading">
+                        <i class="fas fa-tools"></i> Ce se întâmplă acum:
+                    </h6>
+                    <ul class="list-unstyled mb-0 text-start">
+                        <li><i class="fas fa-cog fa-spin text-primary"></i> Echipa tehnică a fost notificată automat</li>
+                        <li><i class="fas fa-wrench text-warning"></i> Eroarea este în proces de investigare</li>
+                        <li><i class="fas fa-clock text-info"></i> Rezolvarea va fi prioritară</li>
+                        <li><i class="fas fa-shield-alt text-success"></i> Datele dumneavoastră sunt în siguranță</li>
+                    </ul>
+                </div>
+                
+                <!-- Sugestii pentru utilizator -->
+                <div class="alert alert-info">
+                    <h6 class="alert-heading">
+                        <i class="fas fa-lightbulb"></i> Ce puteți încerca:
+                    </h6>
+                    <ul class="list-unstyled mb-0 text-start">
+                        <li><i class="fas fa-redo text-primary"></i> Reîncărcați pagina (F5 sau Ctrl+R)</li>
+                        <li><i class="fas fa-wifi text-success"></i> Verificați conexiunea la internet</li>
+                        <li><i class="fas fa-clock text-warning"></i> Așteptați câteva minute și încercați din nou</li>
+                        <li><i class="fas fa-home text-info"></i> Reveniți la pagina principală</li>
+                    </ul>
+                </div>
+                
+                <!-- Butoane de acțiune -->
+                <div class="mb-4">
+                    <button onclick="location.reload()" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-sync-alt"></i> Reîncarcă Pagina
+                    </button>
+                    <a href="{{ url_for('index') }}" class="btn btn-success btn-lg me-2">
+                        <i class="fas fa-home"></i> Pagina Principală
+                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-arrow-left"></i> Înapoi
+                    </button>
+                </div>
+                
+                <!-- Link-uri alternative -->
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-2">
+                        <a href="{{ url_for('patients_list') }}" class="btn btn-outline-info w-100">
+                            <i class="fas fa-users"></i> Pacienți
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <a href="{{ url_for('analyses_list') }}" class="btn btn-outline-success w-100">
+                            <i class="fas fa-flask"></i> Analize
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <button onclick="reportError()" class="btn btn-outline-warning w-100">
+                            <i class="fas fa-bug"></i> Raportează Eroarea
+                        </button>
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <!-- Informații tehnice -->
+                <div class="bg-light rounded p-3 mb-3">
+                    <h6 class="mb-2">
+                        <i class="fas fa-info-circle text-info"></i> Informații Tehnice
+                    </h6>
+                    <small class="text-muted">
+                        <strong>Cod eroare:</strong> 500 - Internal Server Error<br>
+                        <strong>Timp:</strong> {{ moment().format('DD.MM.YYYY HH:mm:ss') if moment else 'N/A' }}<br>
+                        <strong>ID Eroare:</strong> <code>ERR-{{ moment().format('YYYYMMDD-HHmmss') if moment else 'Unknown' }}</code><br>
+                        <strong>Server:</strong> Flask Development Server
+                    </small>
+                </div>
+                
+                <!-- Status sistem -->
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="text-success">
+                            <i class="fas fa-database fa-2x"></i>
+                            <div class="small mt-1">
+                                <strong>Baza de Date</strong><br>
+                                <span class="badge bg-success">Operațională</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-warning">
+                            <i class="fas fa-server fa-2x"></i>
+                            <div class="small mt-1">
+                                <strong>Server Web</strong><br>
+                                <span class="badge bg-warning">În investigare</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-info">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                            <div class="small mt-1">
+                                <strong>Securitate</strong><br>
+                                <span class="badge bg-info">Activă</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card cu contact suport -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="fas fa-headset text-primary"></i> Suport Tehnic
+                </h6>
+                <p class="card-text text-muted mb-3">
+                    Dacă problema persistă sau aveți nevoie de asistență imediată, contactați echipa de suport tehnic.
+                </p>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <i class="fas fa-envelope text-primary fa-2x"></i>
+                        <div class="small mt-2">
+                            <strong>Email:</strong><br>
+                            support@medical-system.ro
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="fas fa-phone text-success fa-2x"></i>
+                        <div class="small mt-2">
+                            <strong>Telefon:</strong><br>
+                            0800 123 456
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="fas fa-comments text-info fa-2x"></i>
+                        <div class="small mt-2">
+                            <strong>Chat Live:</strong><br>
+                            Disponibil 24/7
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Animații CSS -->
+<style>
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error-icon {
+    transition: all 0.3s ease;
+}
+
+.error-icon:hover {
+    transform: scale(1.1);
+}
+
+.display-1 {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.btn {
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.fa-spin {
+    animation: fa-spin 2s infinite linear;
+}
+
+@keyframes fa-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+
+.bg-light {
+    border: 1px solid #e9ecef;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Log eroarea pentru debugging
+    console.error('Eroare 500: Eroare internă de server');
+    console.log('URL curent:', window.location.href);
+    console.log('User Agent:', navigator.userAgent);
+    console.log('Timestamp:', new Date().toISOString());
+    
+    // Animație pentru numărul 500
+    const errorNumber = document.querySelector('.display-1');
+    if (errorNumber) {
+        setTimeout(() => {
+            errorNumber.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                errorNumber.style.transform = 'scale(1)';
+            }, 300);
+        }, 500);
+    }
+    
+    // Auto-refresh după 60 de secunde (opțional)
+    // let countdown = 60;
+    // const countdownElement = document.createElement('div');
+    // countdownElement.className = 'alert alert-info mt-3';
+    // countdownElement.innerHTML = `<i class="fas fa-clock"></i> Pagina se va reîncărca automat în <span id="countdown">${countdown}</span> secunde.`;
+    // document.querySelector('.card-body').appendChild(countdownElement);
+    
+    // const timer = setInterval(() => {
+    //     countdown--;
+    //     document.getElementById('countdown').textContent = countdown;
+    //     if (countdown <= 0) {
+    //         clearInterval(timer);
+    //         location.reload();
+    //     }
+    // }, 1000);
+    
+    // Ping server pentru a verifica dacă s-a rezolvat
+    checkServerStatus();
+});
+
+// Funcție pentru verificarea statusului serverului
+function checkServerStatus() {
+    setTimeout(() => {
+        fetch(window.location.href, { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    showServerRecoveryMessage();
+                }
+            })
+            .catch(() => {
+                console.log('Serverul încă nu răspunde');
+            });
+    }, 10000); // Verifică după 10 secunde
+}
+
+// Afișează mesaj când serverul se recuperează
+function showServerRecoveryMessage() {
+    const alert = document.createElement('div');
+    alert.className = 'alert alert-success';
+    alert.innerHTML = `
+        <h6 class="alert-heading"><i class="fas fa-check-circle"></i> Serverul s-a recuperat!</h6>
+        <p class="mb-0">Se pare că problema a fost rezolvată. 
+        <button onclick="location.reload()" class="btn btn-success btn-sm ms-2">
+            <i class="fas fa-sync"></i> Reîncarcă pagina
+        </button></p>
+    `;
+    document.querySelector('.card-body').insertBefore(alert, document.querySelector('.alert').nextSibling);
+}
+
+// Funcție pentru raportarea erorii
+function reportError() {
+    const errorData = {
+        errorCode: 500,
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: new Date().toISOString(),
+        referrer: document.referrer,
+        stackTrace: 'Server Error - Details logged server-side'
+    };
+    
+    console.log('Raport eroare 500:', errorData);
+    
+    // Simulare trimitere raport
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Se trimite...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Raport trimis';
+        btn.className = 'btn btn-success w-100';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.className = 'btn btn-outline-warning w-100';
+            btn.disabled = false;
+        }, 3000);
+    }, 2000);
+    
+    // Aici se poate implementa trimiterea reală către server
+    // fetch('/api/report-error', {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify(errorData)
+    // });
+}
+
+// Funcție pentru deschiderea chat-ului de suport (simulat)
+function openSupportChat() {
+    alert('Chat-ul de suport va fi disponibil în versiunea următoare.\n\nVă rugăm să ne contactați prin email sau telefon pentru asistență imediată.');
+}
+</script>
+{% endblock %}

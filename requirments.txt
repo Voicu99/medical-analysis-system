@@ -1,0 +1,44 @@
+# Sistem Management Analize Medicale - Dependințe Python
+
+# Framework Flask și extensii
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.5
+
+# Baza de date
+SQLAlchemy==2.0.21
+
+# Generare PDF pentru rapoarte
+reportlab==4.0.4
+
+# Manipulare date și timp
+python-dateutil==2.8.2
+
+# Validare și securitate
+Werkzeug==2.3.7
+
+# Logging îmbunătățit
+colorlog==6.7.0
+
+# Pentru dezvoltare și testing (opțional)
+pytest==7.4.2
+pytest-flask==1.2.0
+
+# Pentru deployment (opțional)
+gunicorn==21.2.0
+
+# Utilitare generale
+click==8.1.7
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+
+# Pentru export Excel (viitor)
+openpyxl==3.1.2
+pandas==2.1.1
+
+# Pentru validare avansată
+email-validator==2.0.0
+
+# Pentru hashing și criptare
+passlib==1.7.4
+bcrypt==4.0.1

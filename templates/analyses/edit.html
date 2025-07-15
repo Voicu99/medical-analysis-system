@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Editeaza Analiza</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="patient_id" class="form-label">Pacient</label>
+            <select class="form-control" name="patient_id" required>
+                {% for patient in patients %}
+                <option value="{{ patient.id }}" {% if patient.id == analysis.patient_id %}selected{% endif %}>
+                    {{ patient.nume }} {{ patient.prenume }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="tip_analiza" class="form-label">Tip Analiza</label>
+            <input type="text" class="form-control" name="tip_analiza" value="{{ analysis.tip_analiza }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="data_recoltare" class="form-label">Data Recoltare</label>
+            <input type="date" class="form-control" name="data_recoltare" 
+                   value="{{ analysis.data_recoltare.strftime('%Y-%m-%d') if analysis.data_recoltare else '' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="data_rezultat" class="form-label">Data Rezultat</label>
+            <input type="date" class="form-control" name="data_rezultat" 
+                   value="{{ analysis.data_rezultat.strftime('%Y-%m-%d') if analysis.data_rezultat else '' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="rezultat" class="form-label">Rezultat</label>
+            <textarea class="form-control" name="rezultat" required>{{ analysis.rezultat }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizeaza</button>
+        <a href="{{ url_for('analyses_list') }}" class="btn btn-secondary">Anuleaza</a>
+    </form>
+</div>
+{% endblock %}

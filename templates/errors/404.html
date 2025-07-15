@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Pagina nu a fost găsită - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+        <div class="card shadow-lg">
+            <div class="card-body py-5">
+                <!-- Iconiță animată -->
+                <div class="error-icon mb-4" style="animation: bounce 2s infinite;">
+                    <i class="fas fa-search fa-6x text-muted"></i>
+                </div>
+                
+                <!-- Codul de eroare -->
+                <h1 class="display-1 text-primary fw-bold mb-3" style="font-size: 8rem;">404</h1>
+                
+                <!-- Titlul erorii -->
+                <h2 class="h3 mb-3 text-dark">Pagina nu a fost găsită</h2>
+                
+                <!-- Mesajul explicativ -->
+                <p class="text-muted mb-4 lead">
+                    Ne pare rău, dar pagina pe care o căutați nu există, a fost mutată sau temporar indisponibilă.
+                </p>
+                
+                <!-- Sugestii -->
+                <div class="alert alert-info">
+                    <h6 class="alert-heading">
+                        <i class="fas fa-lightbulb"></i> Ce puteți încerca:
+                    </h6>
+                    <ul class="list-unstyled mb-0 text-start">
+                        <li><i class="fas fa-check text-success"></i> Verificați adresa URL pentru greșeli de scriere</li>
+                        <li><i class="fas fa-check text-success"></i> Folosiți meniul de navigare pentru a găsi pagina dorită</li>
+                        <li><i class="fas fa-check text-success"></i> Reveniți la pagina principală și încercați din nou</li>
+                        <li><i class="fas fa-check text-success"></i> Contactați administratorul dacă problema persistă</li>
+                    </ul>
+                </div>
+                
+                <!-- Butoane de navigare -->
+                <div class="mb-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-home"></i> Pagina Principală
+                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-arrow-left"></i> Înapoi
+                    </button>
+                </div>
+                
+                <!-- Link-uri rapide -->
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <a href="{{ url_for('patients_list') }}" class="btn btn-outline-info w-100">
+                            <i class="fas fa-users"></i> Pacienți
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <a href="{{ url_for('analyses_list') }}" class="btn btn-outline-success w-100">
+                            <i class="fas fa-flask"></i> Analize
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <!-- Informații tehnice -->
+                <small class="text-muted">
+                    <i class="fas fa-info-circle"></i>
+                    Cod eroare: 404 - Pagina nu a fost găsită<br>
+                    Timp: {{ moment().format('DD.MM.YYYY HH:mm:ss') if moment else 'N/A' }}<br>
+                    ID sesiune: {{ request.remote_addr if request else 'Unknown' }}
+                </small>
+            </div>
+        </div>
+        
+        <!-- Card cu ajutor suplimentar -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="fas fa-question-circle text-info"></i> Aveți nevoie de ajutor?
+                </h6>
+                <p class="card-text text-muted mb-3">
+                    Dacă întâmpinați în mod repetat această problemă, vă rugăm să ne contactați pentru asistență.
+                </p>
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <i class="fas fa-envelope text-primary"></i>
+                        <div class="small">
+                            <strong>Email suport:</strong><br>
+                            support@medical-system.ro
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fas fa-phone text-success"></i>
+                        <div class="small">
+                            <strong>Telefon suport:</strong><br>
+                            0800 123 456
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Animație CSS -->
+<style>
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.error-icon {
+    transition: all 0.3s ease;
+}
+
+.error-icon:hover {
+    transform: scale(1.1);
+}
+
+.display-1 {
+    background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.btn {
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Log eroarea pentru debugging
+    console.log('Eroare 404: Pagina nu a fost găsită');
+    console.log('URL solicitat:', window.location.href);
+    console.log('Referrer:', document.referrer);
+    
+    // Animație pentru numărul 404
+    const errorNumber = document.querySelector('.display-1');
+    if (errorNumber) {
+        setTimeout(() => {
+            errorNumber.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                errorNumber.style.transform = 'scale(1)';
+            }, 300);
+        }, 500);
+    }
+    
+    // Auto-redirect după 30 de secunde (opțional)
+    // setTimeout(() => {
+    //     if (confirm('Doriți să fiți redirecționat către pagina principală?')) {
+    //         window.location.href = '/';
+    //     }
+    // }, 30000);
+});
+
+// Funcție pentru raportarea erorii
+function reportError() {
+    const errorData = {
+        url: window.location.href,
+        referrer: document.referrer,
+        userAgent: navigator.userAgent,
+        timestamp: new Date().toISOString()
+    };
+    
+    console.log('Raport eroare 404:', errorData);
+    
+    // Aici se poate implementa trimiterea către server
+    // fetch('/api/report-error', {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify(errorData)
+    // });
+    
+    alert('Eroarea a fost raportată. Mulțumim!');
+}
+</script>
+{% endblock %}

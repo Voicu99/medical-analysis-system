@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Adauga Pacient</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="nume" class="form-label">Nume</label>
+            <input type="text" class="form-control" name="nume" required>
+        </div>
+        <div class="mb-3">
+            <label for="prenume" class="form-label">Prenume</label>
+            <input type="text" class="form-control" name="prenume" required>
+        </div>
+        <div class="mb-3">
+            <label for="cnp" class="form-label">CNP</label>
+            <input type="text" class="form-control" name="cnp" required>
+        </div>
+        <div class="mb-3">
+            <label for="varsta" class="form-label">Varsta</label>
+            <input type="number" class="form-control" name="varsta" required>
+        </div>
+        <div class="mb-3">
+            <label for="sex" class="form-label">Sex</label>
+            <select class="form-control" name="sex" required>
+                <option value="">Selectati</option>
+                <option value="M">Masculin</option>
+                <option value="F">Feminin</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="telefon" class="form-label">Telefon</label>
+            <input type="text" class="form-control" name="telefon">
+        </div>
+        <div class="mb-3">
+            <label for="adresa" class="form-label">Adresa</label>
+            <textarea class="form-control" name="adresa"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Salveaza Pacient</button>
+        <a href="{{ url_for('patients_list') }}" class="btn btn-secondary">Anuleaza</a>
+    </form>
+</div>
+{% endblock %}

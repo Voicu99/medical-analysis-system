@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+
+{% block title %}{{ patient.nume }} {{ patient.prenume }} - Sistem Management Analize Medicale{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="fas fa-user-circle text-primary"></i> 
+                {{ patient.nume }} {{ patient.prenume }}
+            </h1>
+            <div>
+                <a href="{{ url_for('add_analysis') }}?patient_id={{ patient.id }}" class="btn btn-success me-2">
+                    <i class="fas fa-plus"></i> Adauga Analiza
+                </a>
+                <a href="{{ url_for('edit_patient', id=patient.id) }}" class="btn btn-warning me-2">
+                    <i class="fas fa-edit"></i> Editeaza
+                </a>
+                <a href="{{ url_for('generate_patient_report', patient_id=patient.id) }}" class="btn btn-info me-2">
+                    <i class="fas fa-file-medical"></i> Raport Complet
+                </a>
+                <a href="{{ url_for('patients_list') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Inapoi
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Informatii Pacient -->
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-user"></i> Informatii Personale
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-user text-muted"></i> Nume complet:</td>
+                                <td>{{ patient.nume }} {{ patient.prenume }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-id-card text-muted"></i> CNP:</td>
+                                <td><span class="font-monospace">{{ patient.cnp }}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-birthday-cake text-muted"></i> Varsta:</td>
+                                <td>
+                                    <span class="badge bg-info">{{ patient.varsta }} ani</span>
+                                    <small class="text-muted">
+                                        ({% if patient.varsta < 18 %}Copil{% elif patient.varsta < 65 %}Adult{% else %}Senior{% endif %})
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-venus-mars text-muted"></i> Sex:</td>
+                                <td>
+                                    {% if patient.sex == 'M' %}
+                                        <span class="badge bg-primary">
+                                            <i class="fas fa-mars"></i> Masculin
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-pink" style="background-color: #e91e63 !important;">
+                                            <i class="fas fa-venus"></i> Feminin
+                                        </span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-phone text-muted"></i> Telefon:</td>
+                                <td>
+                                    {% if patient.telefon %}
+                                        <a href="tel:{{ patient.telefon }}" class="text-decoration-none">
+                                            <i class="fas fa-phone-alt text-success"></i> {{ patient.telefon }}
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">Nu este specificat</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-map-marker-alt text-muted"></i> Adresa:</td>
+                                <td>
+                                    {% if patient.adresa %}
+                                        {{ patient.adresa }}
+                                    {% else %}
+                                        <span class="text-muted">Nu este specificata</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-calendar-plus text-muted"></i> Inregistrat:</td>
+                                <td>{{ patient.created_at.strftime('%d.%m.%Y %H:%M') if patient.created_at else 'N/A' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold"><i class="fas fa-hashtag text-muted"></i> ID Pacient:</td>
+                                <td><span class="badge bg-secondary">#{{ patient.id }}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Statistici Rapide -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-pie"></i> Statistici
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <div class="stats-number" style="font-size: 2rem; color: var(--primary-color);">
+                        {{ analyses|length if analyses else 0 }}
+                    </div>
+                    <div class="h6 text-muted">Analize Efectuate</div>
+                </div>
+                
+                {% if analyses %}
+                <hr>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="fw-semibold">Prima Analiza</div>
+                        <small class="text-muted">{{ analyses[-1].data_rezultat.strftime('%d.%m.%Y') if analyses[-1].data_rezultat else 'N/A' }}</small>
+                    </div>
+                    <div class="col-6">
+                        <div class="fw-semibold">Ultima Analiza</div>
+                        <small class="text-muted">{{ analyses[0].data_rezultat.strftime('%d.%m.%Y') if analyses[0].data_rezultat else 'N/A' }}</small>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <hr>
+                <div class="d-grid">
+                    <a href="{{ url_for('add_analysis') }}?patient_id={{ patient.id }}" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Adauga Analiza
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analize -->
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">
+                <i class="fas fa-flask"></i> 
+                Istoricul Analizelor ({{ analyses|length if analyses else 0 }})
+            </h5>
+            {% if analyses and analyses|length > 0 %}
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="sortAnalyses('date')">
+                    <i class="fas fa-sort-amount-down"></i> Sortare data
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="sortAnalyses('type')">
+                    <i class="fas fa-sort-alpha-down"></i> Sortare tip
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-body">
+        {% if analyses %}
+            <div class="table-responsive">
+                <table class="table table-hover" id="analysesTable">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-flask"></i> Tip Analiza</th>
+                            <th><i class="fas fa-calendar"></i> Data Recoltare</th>
+                            <th><i class="fas fa-calendar-check"></i> Data Rezultat</th>
+                            <th><i class="fas fa-user-md"></i> Medic</th>
+                            <th><i class="fas fa-hospital"></i> Laborator</th>
+                            <th><i class="fas fa-cogs"></i> Actiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for analysis in analyses %}
+                        <tr>
+                            <td>
+                                <div class="fw-semibold">{{ analysis.tip_analiza }}</div>
+                                <small class="text-muted">ID: #{{ analysis.id }}</small>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">{{ analysis.data_recoltare.strftime('%d.%m.%Y') if analysis.data_recoltare else 'N/A' }}</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-success">{{ analysis.data_rezultat.strftime('%d.%m.%Y') if analysis.data_rezultat else 'N/A' }}</span>
+                                <br>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock"></i> {{ analysis.created_at.strftime('%d.%m.%Y %H:%M') if analysis.created_at else 'N/A' }}
+                                </small>
+                            </td>
+                            <td>
+                                {% if analysis.medic %}
+                                    <i class="fas fa-user-md text-primary"></i> {{ analysis.medic }}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if analysis.laborator %}
+                                    <i class="fas fa-hospital text-info"></i> {{ analysis.laborator }}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ url_for('view_analysis', id=analysis.id) }}" 
+                                       class="btn btn-outline-info btn-sm" title="Vezi Detalii">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ url_for('generate_analysis_report', analysis_id=analysis.id) }}" 
+                                       class="btn btn-outline-success btn-sm" title="Raport">
+                                        <i class="fas fa-file-alt"></i>
+                                    </a>
+                                    <a href="{{ url_for('edit_analysis', id=analysis.id) }}" 
+                                       class="btn btn-outline-warning btn-sm" title="Editeaza">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ url_for('delete_analysis', id=analysis.id) }}" 
+                                       class="btn btn-outline-danger btn-sm" 
+                                       onclick="return confirmDelete('Sigur doriti sa stergeti aceasta analiza?')"
+                                       title="Sterge">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-flask fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Nu exista analize pentru acest pacient</h5>
+                <p class="text-muted">Adaugati prima analiza pentru a incepe monitorizarea</p>
+                <a href="{{ url_for('add_analysis') }}?patient_id={{ patient.id }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Adauga Prima Analiza
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Actiuni Rapide -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-bolt"></i> Actiuni Rapide
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <a href="{{ url_for('add_analysis') }}?patient_id={{ patient.id }}" class="btn btn-success w-100">
+                            <i class="fas fa-plus"></i> Adauga Analiza
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a href="{{ url_for('edit_patient', id=patient.id) }}" class="btn btn-warning w-100">
+                            <i class="fas fa-edit"></i> Editeaza Pacient
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a href="{{ url_for('generate_patient_report', patient_id=patient.id) }}" class="btn btn-info w-100">
+                            <i class="fas fa-file-medical"></i> Raport Complet
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a href="{{ url_for('analyses_list') }}?patient_id={{ patient.id }}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-search"></i> Filtreaza Analize
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Functii pentru sortarea analizelor
+function sortAnalyses(type) {
+    const table = document.getElementById('analysesTable');
+    if (!table) return;
+    
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+    rows.sort((a, b) => {
+        if (type === 'date') {
+            // Sortare dupa data rezultatului (coloana 3)
+            const dateA = a.cells[2].textContent.trim();
+            const dateB = b.cells[2].textContent.trim();
+            return dateB.localeCompare(dateA);
+        } else if (type === 'type') {
+            // Sortare dupa tipul analizei (coloana 1)
+            const typeA = a.cells[0].textContent.trim().toLowerCase();
+            const typeB = b.cells[0].textContent.trim().toLowerCase();
+            return typeA.localeCompare(typeB);
+        }
+    });
+    
+    // Reconstituie tabela
+    rows.forEach(row => tbody.appendChild(row));
+    
+    // Feedback vizual
+    const button = event.target.closest('button');
+    button.classList.add('btn-secondary');
+    button.classList.remove('btn-outline-secondary');
+    
+    setTimeout(() => {
+        button.classList.remove('btn-secondary');
+        button.classList.add('btn-outline-secondary');
+    }, 1000);
+}
+
+// Evidentiaza randuri la hover
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('#analysesTable tbody tr');
+    rows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = 'rgba(0,123,255,0.1)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+        });
+    });
+});
+
+// Animatie pentru statistici
+document.addEventListener('DOMContentLoaded', function() {
+    const statsNumber = document.querySelector('.stats-number');
+    if (statsNumber) {
+        const finalValue = parseInt(statsNumber.textContent);
+        let currentValue = 0;
+        const increment = Math.ceil(finalValue / 20);
+        
+        const counter = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= finalValue) {
+                currentValue = finalValue;
+                clearInterval(counter);
+            }
+            statsNumber.textContent = currentValue;
+        }, 50);
+    }
+});
+</script>
+{% endblock %}
