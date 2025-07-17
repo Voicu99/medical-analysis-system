@@ -12,6 +12,7 @@ from datetime import datetime, date
 import logging
 from typing import Dict, List, Optional
 import os
+import random
 from werkzeug.utils import secure_filename
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.pdfgen import canvas
@@ -145,7 +146,7 @@ class Analysis(db.Model):
             'created_at': self.created_at.isoformat() if self.created_at else None
         }
 
-# Funcții utilitare
+# Funcții utilitare pentru validare CNP
 def validate_cnp(cnp: str) -> bool:
     """
     Validează CNP-ul românesc conform algoritmului oficial
@@ -311,6 +312,113 @@ def extract_info_from_cnp(cnp: str) -> Optional[Dict]:
         
     except (ValueError, IndexError):
         return None
+
+
+# Funcții pentru generarea automată de medici și laboratoare
+def generate_random_doctor():
+    """Generează un nume de medic aleatoriu"""
+    prenume_medici = [
+        'Ana', 'Maria', 'Elena', 'Cristina', 'Ioana', 'Mihaela', 'Gabriela', 'Alina',
+        'Ion', 'Mihai', 'Alexandru', 'Andrei', 'Stefan', 'Radu', 'Bogdan', 'Cristian',
+        'Luminita', 'Carmen', 'Diana', 'Raluca', 'Andreea', 'Simona', 'Daniela',
+        'Daniel', 'Florin', 'Marius', 'Adrian', 'Gheorghe', 'Vasile', 'Nicolae'
+    ]
+    
+    nume_medici = [
+        'Popescu', 'Ionescu', 'Popa', 'Stoica', 'Dumitrescu', 'Georgescu', 
+        'Constantinescu', 'Marin', 'Tudor', 'Radu', 'Vasilescu', 'Nicolae',
+        'Stanescu', 'Moldovan', 'Oprea', 'Diaconu', 'Niculescu', 'Barbu',
+        'Petrescu', 'Ciobanu', 'Stefan', 'Florea', 'Preda', 'Lazar'
+    ]
+    
+    prenume = random.choice(prenume_medici)
+    nume = random.choice(nume_medici)
+    
+    return f"Dr. {nume} {prenume}"
+
+
+def generate_random_laboratory():
+    """Generează un nume de laborator aleatoriu"""
+    laboratoare = [
+        'Synevo',
+        'MedLife',
+        'Regina Maria',
+        'Bioclinica',
+        'Lifecare',
+        'Sanador',
+        'Medicover',
+        'Gral Medical',
+        'Medis',
+        'Biotest',
+        'Euroclinic',
+        'Centrul Medical Excellence',
+        'Policlinica de Diagnostic Rapid',
+        'Laboratorul Central',
+        'Bio Labs',
+        'MedCenter',
+        'Clinic Lab',
+        'Alpha Lab',
+        'Prima Lab',
+        'Expert Medical'
+    ]
+    
+    return random.choice(laboratoare)
+
+
+def get_analysis_suggestions():
+    """Returnează sugestii de analize pe categorii"""
+    return {
+        'Analize de bază': [
+            'Hemograma completă',
+            'Glicemia',
+            'Colesterol total',
+            'Trigliceride',
+            'Creatinina',
+            'Uree'
+        ],
+        'Analize hormonale': [
+            'TSH',
+            'T3',
+            'T4',
+            'Cortizol',
+            'Testosteron',
+            'Estradiol'
+        ],
+        'Analize cardiace': [
+            'Profilul lipidic',
+            'HDL Colesterol',
+            'LDL Colesterol',
+            'CK-MB',
+            'Troponina'
+        ],
+        'Analize hepatice': [
+            'ALAT (ALT)',
+            'ASAT (AST)',
+            'Bilirubina totală',
+            'Bilirubina directă',
+            'Fosfataza alcalină'
+        ],
+        'Analize inflamatorii': [
+            'Proteina C reactivă',
+            'VSH',
+            'Fibrinogen',
+            'Procalcitonina'
+        ],
+        'Analize urinare': [
+            'Examen complet de urină',
+            'Urocultura',
+            'Microalbuminuria',
+            'Proteinuria de 24h'
+        ],
+        'Vitamine și minerale': [
+            'Vitamina D',
+            'Vitamina B12',
+            'Acid folic',
+            'Fier seric',
+            'Ferritina',
+            'Magneziu'
+        ]
+    }
 
 
 def get_statistics() -> Dict:
@@ -575,7 +683,27 @@ def test_cnp(cnp):
         'extracted_info': cnp_info
     })
 
-# CRUD ANALIZE (păstrez codul original pentru analize)
+# API pentru generare dinamică de medici și laboratoare
+@app.route('/api/generate-doctor')
+def api_generate_doctor():
+    """API pentru generarea unui medic aleatoriu"""
+    return jsonify({
+        'doctor': generate_random_doctor()
+    })
+
+@app.route('/api/generate-laboratory')
+def api_generate_laboratory():
+    """API pentru generarea unui laborator aleatoriu"""
+    return jsonify({
+        'laboratory': generate_random_laboratory()
+    })
+
+@app.route('/api/analysis-suggestions')
+def api_analysis_suggestions():
+    """API pentru sugestii de analize"""
+    return jsonify(get_analysis_suggestions())
+
+# CRUD ANALIZE
 @app.route('/analyses')
 def analyses_list():
     """Lista analize cu opțiuni de filtrare și sortare"""
@@ -660,7 +788,7 @@ def analyses_list():
 
 @app.route('/analyses/add', methods=['GET', 'POST'])
 def add_analysis():
-    """Adăugare analiză nouă"""
+    """Adăugare analiză nouă cu generare automată medic/laborator"""
     if request.method == 'POST':
         try:
             # Validare date
@@ -670,7 +798,23 @@ def add_analysis():
             if data_rezultat < data_recoltare:
                 flash('Data rezultatului nu poate fi anterioară datei recoltării!', 'error')
                 patients = Patient.query.order_by(Patient.nume).all()
-                return render_template('analyses/add.html', patients=patients)
+                return render_template('analyses/add.html', 
+                                     patients=patients,
+                                     random_doctor=generate_random_doctor(),
+                                     random_laboratory=generate_random_laboratory(),
+                                     analysis_suggestions=get_analysis_suggestions())
+            
+            # Generează medic și laborator dacă nu sunt specificate
+            medic = request.form.get('medic', '').strip()
+            laborator = request.form.get('laborator', '').strip()
+            
+            if not medic:
+                medic = generate_random_doctor()
+                flash(f'Medic generat automat: {medic}', 'info')
+            
+            if not laborator:
+                laborator = generate_random_laboratory()
+                flash(f'Laborator generat automat: {laborator}', 'info')
             
             analysis = Analysis(
                 patient_id=int(request.form['patient_id']),
@@ -680,8 +824,8 @@ def add_analysis():
                 observatii=request.form.get('observatii', '').strip(),
                 data_recoltare=data_recoltare,
                 data_rezultat=data_rezultat,
-                medic=request.form.get('medic', '').strip(),
-                laborator=request.form.get('laborator', '').strip()
+                medic=medic,
+                laborator=laborator
             )
             
             db.session.add(analysis)
@@ -699,7 +843,11 @@ def add_analysis():
             db.session.rollback()
     
     patients = Patient.query.order_by(Patient.nume).all()
-    return render_template('analyses/add.html', patients=patients)
+    return render_template('analyses/add.html', 
+                         patients=patients,
+                         random_doctor=generate_random_doctor(),
+                         random_laboratory=generate_random_laboratory(),
+                         analysis_suggestions=get_analysis_suggestions())
 
 @app.route('/analyses/edit/<int:id>', methods=['GET', 'POST'])
 def edit_analysis(id: int):
@@ -769,13 +917,13 @@ def view_analysis(id: int):
     analysis = Analysis.query.get_or_404(id)
     return render_template('analyses/view.html', analysis=analysis)
 
-# GENERARE RAPOARTE
+# GENERARE RAPOARTE - Secțiunea corectată pentru toate fișierele
 @app.route('/reports/analysis/<int:analysis_id>')
 def generate_analysis_report(analysis_id: int):
     """Generare raport pentru o analiză"""
     analysis = Analysis.query.get_or_404(analysis_id)
     
-    return render_template('reports/analysis_report.html', 
+    return render_template('reports/analysis_reports.html', 
                          analysis=analysis,
                          patient=analysis.patient)
 
@@ -785,7 +933,7 @@ def generate_patient_report(patient_id: int):
     patient = Patient.query.get_or_404(patient_id)
     analyses = Analysis.query.filter_by(patient_id=patient_id).order_by(Analysis.data_rezultat.desc()).all()
     
-    return render_template('reports/patient_report.html', 
+    return render_template('reports/patient_reports.html', 
                          patient=patient,
                          analyses=analyses)
 
@@ -811,6 +959,169 @@ def statistics_report():
                          stats=stats,
                          analyses_by_type=analyses_by_type,
                          analyses_by_month=analyses_by_month)
+
+# FUNCȚII PDF pentru rapoarte
+@app.route('/reports/analysis/<int:analysis_id>/pdf')
+def generate_analysis_pdf(analysis_id: int):
+    """Generare PDF pentru o analiză"""
+    analysis = Analysis.query.get_or_404(analysis_id)
+    
+    # Crearea PDF-ului
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+    
+    # Header
+    p.setFont("Helvetica-Bold", 16)
+    p.drawString(50, height - 50, "RAPORT ANALIZA MEDICALA")
+    
+    # Informații pacient
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(50, height - 100, "INFORMATII PACIENT:")
+    p.setFont("Helvetica", 11)
+    p.drawString(50, height - 120, f"Nume: {analysis.patient.nume} {analysis.patient.prenume}")
+    p.drawString(50, height - 135, f"CNP: {analysis.patient.cnp}")
+    p.drawString(50, height - 150, f"Varsta: {analysis.patient.varsta} ani")
+    p.drawString(50, height - 165, f"Sex: {'Masculin' if analysis.patient.sex == 'M' else 'Feminin'}")
+    
+    # Informații analiză
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(50, height - 200, "INFORMATII ANALIZA:")
+    p.setFont("Helvetica", 11)
+    p.drawString(50, height - 220, f"Tip: {analysis.tip_analiza}")
+    p.drawString(50, height - 235, f"Data recoltare: {analysis.data_recoltare.strftime('%d.%m.%Y')}")
+    p.drawString(50, height - 250, f"Data rezultat: {analysis.data_rezultat.strftime('%d.%m.%Y')}")
+    p.drawString(50, height - 265, f"Medic: {analysis.medic or 'Nu este specificat'}")
+    p.drawString(50, height - 280, f"Laborator: {analysis.laborator or 'Nu este specificat'}")
+    
+    # Rezultate
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(50, height - 315, "REZULTATE:")
+    p.setFont("Helvetica", 11)
+    
+    # Împărțim rezultatul în linii
+    rezultat_lines = analysis.rezultat.split('\n')
+    y_pos = height - 335
+    for line in rezultat_lines:
+        if y_pos < 100:  # Pagină nouă dacă nu mai avem spațiu
+            p.showPage()
+            y_pos = height - 50
+        p.drawString(50, y_pos, line[:80])  # Limitare la 80 caractere per linie
+        y_pos -= 15
+    
+    # Valori normale
+    if analysis.valori_normale:
+        y_pos -= 20
+        if y_pos < 100:
+            p.showPage()
+            y_pos = height - 50
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(50, y_pos, "VALORI NORMALE:")
+        p.setFont("Helvetica", 11)
+        p.drawString(50, y_pos - 20, analysis.valori_normale)
+        y_pos -= 40
+    
+    # Observații
+    if analysis.observatii:
+        if y_pos < 100:
+            p.showPage()
+            y_pos = height - 50
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(50, y_pos, "OBSERVATII:")
+        p.setFont("Helvetica", 11)
+        observatii_lines = analysis.observatii.split('\n')
+        for line in observatii_lines:
+            if y_pos < 100:
+                p.showPage()
+                y_pos = height - 50
+            p.drawString(50, y_pos - 20, line[:80])
+            y_pos -= 15
+    
+    # Footer
+    p.setFont("Helvetica", 8)
+    p.drawString(50, 50, f"Generat la: {datetime.now().strftime('%d.%m.%Y %H:%M')}")
+    p.drawString(50, 35, "Sistem Management Analize Medicale")
+    
+    p.save()
+    buffer.seek(0)
+    
+    response = make_response(buffer.getvalue())
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f'attachment; filename=analiza_{analysis.id}_{analysis.patient.nume}_{analysis.patient.prenume}.pdf'
+    
+    return response
+
+@app.route('/reports/patient/<int:patient_id>/pdf')
+def generate_patient_pdf(patient_id: int):
+    """Generare PDF pentru toate analizele unui pacient"""
+    patient = Patient.query.get_or_404(patient_id)
+    analyses = Analysis.query.filter_by(patient_id=patient_id).order_by(Analysis.data_rezultat.desc()).all()
+    
+    # Crearea PDF-ului
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+    
+    # Header
+    p.setFont("Helvetica-Bold", 16)
+    p.drawString(50, height - 50, "RAPORT COMPLET PACIENT")
+    
+    # Informații pacient
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(50, height - 100, "INFORMATII PACIENT:")
+    p.setFont("Helvetica", 11)
+    p.drawString(50, height - 120, f"Nume: {patient.nume} {patient.prenume}")
+    p.drawString(50, height - 135, f"CNP: {patient.cnp}")
+    p.drawString(50, height - 150, f"Varsta: {patient.varsta} ani")
+    p.drawString(50, height - 165, f"Sex: {'Masculin' if patient.sex == 'M' else 'Feminin'}")
+    p.drawString(50, height - 180, f"Telefon: {patient.telefon or 'Nu este specificat'}")
+    p.drawString(50, height - 195, f"Adresa: {patient.adresa or 'Nu este specificata'}")
+    
+    y_pos = height - 230
+    
+    if analyses:
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(50, y_pos, f"ISTORIC ANALIZE ({len(analyses)} analize):")
+        y_pos -= 30
+        
+        for i, analysis in enumerate(analyses, 1):
+            if y_pos < 150:  # Pagină nouă
+                p.showPage()
+                y_pos = height - 50
+            
+            p.setFont("Helvetica-Bold", 11)
+            p.drawString(50, y_pos, f"{i}. {analysis.tip_analiza}")
+            y_pos -= 15
+            
+            p.setFont("Helvetica", 10)
+            p.drawString(70, y_pos, f"Data: {analysis.data_rezultat.strftime('%d.%m.%Y')}")
+            y_pos -= 12
+            p.drawString(70, y_pos, f"Medic: {analysis.medic or 'Nu specificat'}")
+            y_pos -= 12
+            p.drawString(70, y_pos, f"Laborator: {analysis.laborator or 'Nu specificat'}")
+            y_pos -= 12
+            
+            # Rezultat (primele 100 caractere)
+            rezultat_scurt = analysis.rezultat[:100] + "..." if len(analysis.rezultat) > 100 else analysis.rezultat
+            p.drawString(70, y_pos, f"Rezultat: {rezultat_scurt}")
+            y_pos -= 20
+    else:
+        p.setFont("Helvetica", 11)
+        p.drawString(50, y_pos, "Nu exista analize pentru acest pacient.")
+    
+    # Footer
+    p.setFont("Helvetica", 8)
+    p.drawString(50, 50, f"Generat la: {datetime.now().strftime('%d.%m.%Y %H:%M')}")
+    p.drawString(50, 35, "Sistem Management Analize Medicale")
+    
+    p.save()
+    buffer.seek(0)
+    
+    response = make_response(buffer.getvalue())
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f'attachment; filename=pacient_{patient.nume}_{patient.prenume}_complet.pdf'
+    
+    return response
 
 # API pentru dezvoltări viitoare
 @app.route('/api/patients')
@@ -923,7 +1234,7 @@ def init_db():
                 {
                     'nume': 'Georgescu',
                     'prenume': 'Ana',
-                    'cnp': '6950630123456',  # Feminin, 30.06.2095 (pentru test)
+                    'cnp': '6950630123456',  # Feminin, 30.06.1995
                     'varsta': 29,
                     'sex': 'F',
                     'telefon': '0755111222',
@@ -941,7 +1252,7 @@ def init_db():
             
             db.session.commit()
             
-            # Adaugă analize de test
+            # Adaugă analize de test cu medici și laboratoare generate
             analyses_data = [
                 {
                     'patient_id': 1,
@@ -951,8 +1262,8 @@ def init_db():
                     'observatii': 'Valori în parametri normali',
                     'data_recoltare': date(2024, 1, 15),
                     'data_rezultat': date(2024, 1, 16),
-                    'medic': 'Dr. Popescu Ana',
-                    'laborator': 'Synevo'
+                    'medic': generate_random_doctor(),
+                    'laborator': generate_random_laboratory()
                 },
                 {
                     'patient_id': 1,
@@ -962,8 +1273,8 @@ def init_db():
                     'observatii': 'Valoare normală',
                     'data_recoltare': date(2024, 2, 10),
                     'data_rezultat': date(2024, 2, 10),
-                    'medic': 'Dr. Ionescu Mihai',
-                    'laborator': 'MedLife'
+                    'medic': generate_random_doctor(),
+                    'laborator': generate_random_laboratory()
                 },
                 {
                     'patient_id': 2,
@@ -973,8 +1284,8 @@ def init_db():
                     'observatii': 'Profil lipidic în limite normale',
                     'data_recoltare': date(2024, 1, 20),
                     'data_rezultat': date(2024, 1, 21),
-                    'medic': 'Dr. Vasilescu Elena',
-                    'laborator': 'Regina Maria'
+                    'medic': generate_random_doctor(),
+                    'laborator': generate_random_laboratory()
                 },
                 {
                     'patient_id': 3,
@@ -984,8 +1295,19 @@ def init_db():
                     'observatii': 'Funcție tiroidiană normală',
                     'data_recoltare': date(2024, 2, 5),
                     'data_rezultat': date(2024, 2, 6),
-                    'medic': 'Dr. Radu Cristina',
-                    'laborator': 'Synevo'
+                    'medic': generate_random_doctor(),
+                    'laborator': generate_random_laboratory()
+                },
+                {
+                    'patient_id': 4,
+                    'tip_analiza': 'Creatinina',
+                    'rezultat': '0.9 mg/dl',
+                    'valori_normale': '0.5-1.0 mg/dl (F), 0.6-1.2 mg/dl (M)',
+                    'observatii': 'Funcție renală normală',
+                    'data_recoltare': date(2024, 2, 15),
+                    'data_rezultat': date(2024, 2, 16),
+                    'medic': generate_random_doctor(),
+                    'laborator': generate_random_laboratory()
                 }
             ]
             
@@ -1022,7 +1344,8 @@ def utility_processor():
         format_date=format_date,
         format_datetime=format_datetime,
         get_age_group=get_age_group,
-        current_year=datetime.now().year
+        current_year=datetime.now().year,
+        datetime=datetime
     )
 
 if __name__ == '__main__':
