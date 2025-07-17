@@ -147,19 +147,171 @@ class Analysis(db.Model):
 
 # Funcții utilitare
 def validate_cnp(cnp: str) -> bool:
-    """Validează CNP-ul românesc"""
-    if len(cnp) != 13 or not cnp.isdigit():
+    """
+    Validează CNP-ul românesc conform algoritmului oficial
+    
+    Args:
+        cnp (str): CNP-ul de validat (13 cifre)
+        
+    Returns:
+        bool: True dacă CNP-ul este valid, False altfel
+    """
+    # Verificare lungime și format
+    if not cnp or len(cnp) != 13:
         return False
     
-    # Validare algoritmică simplă
-    control_digits = "279146358279"
-    control_sum = sum(int(cnp[i]) * int(control_digits[i]) for i in range(12))
-    control_digit = control_sum % 11
+    # Verificare dacă toate caracterele sunt cifre
+    if not cnp.isdigit():
+        return False
     
-    if control_digit == 10:
-        control_digit = 1
+    # Verificare prima cifră (sex și secol)
+    if cnp[0] not in '12345678':
+        return False
     
-    return control_digit == int(cnp[12])
+    try:
+        # Verificare luna
+        luna = int(cnp[3:5])
+        if luna < 1 or luna > 12:
+            return False
+        
+        # Verificare ziua
+        zi = int(cnp[5:7])
+        if zi < 1 or zi > 31:
+            return False
+        
+        # Calculul cifrei de control
+        coeficienti = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9]
+        suma = sum(int(cnp[i]) * coeficienti[i] for i in range(12))
+        
+        rest = suma % 11
+        cifra_control = 1 if rest == 10 else rest
+        
+        return cifra_control == int(cnp[12])
+        
+    except (ValueError, IndexError):
+        return False
+
+
+def validate_cnp_detailed(cnp: str) -> tuple[bool, str]:
+    """
+    Validează CNP-ul și returnează mesajul de eroare detaliat
+    
+    Args:
+        cnp (str): CNP-ul de validat
+        
+    Returns:
+        tuple[bool, str]: (is_valid, error_message)
+    """
+    if not cnp:
+        return False, "CNP-ul nu poate fi gol"
+    
+    if len(cnp) != 13:
+        return False, "CNP-ul trebuie să aibă exact 13 cifre"
+    
+    if not cnp.isdigit():
+        return False, "CNP-ul trebuie să conțină doar cifre"
+    
+    if cnp[0] not in '12345678':
+        return False, "Prima cifră a CNP-ului este invalidă (trebuie să fie 1-8)"
+    
+    try:
+        # Verificare anul nașterii
+        an = int(cnp[1:3])
+        if cnp[0] in '12':  # secolul XX (1900-1999)
+            an_complet = 1900 + an
+        elif cnp[0] in '34':  # secolul XIX (1800-1899)
+            an_complet = 1800 + an
+        elif cnp[0] in '56':  # secolul XXI (2000-2099)
+            an_complet = 2000 + an
+        elif cnp[0] in '78':  # secolul XVIII (1700-1799)
+            an_complet = 1700 + an
+        
+        # Verificare anul să fie rezonabil
+        anul_curent = datetime.now().year
+        if an_complet < 1900 or an_complet > anul_curent:
+            return False, f"Anul nașterii ({an_complet}) nu este valid"
+        
+        # Verificare luna
+        luna = int(cnp[3:5])
+        if luna < 1 or luna > 12:
+            return False, "Luna din CNP este invalidă (trebuie să fie 01-12)"
+        
+        # Verificare ziua
+        zi = int(cnp[5:7])
+        if zi < 1 or zi > 31:
+            return False, "Ziua din CNP este invalidă (trebuie să fie 01-31)"
+        
+        # Calculul cifrei de control
+        coeficienti = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9]
+        suma = sum(int(cnp[i]) * coeficienti[i] for i in range(12))
+        
+        rest = suma % 11
+        cifra_control = 1 if rest == 10 else rest
+        
+        if cifra_control != int(cnp[12]):
+            return False, "Cifra de control a CNP-ului este incorectă"
+        
+        return True, "CNP valid"
+        
+    except (ValueError, IndexError):
+        return False, "CNP-ul conține caractere invalide"
+
+
+def extract_info_from_cnp(cnp: str) -> Optional[Dict]:
+    """
+    Extrage informații din CNP (sex, vârstă, data nașterii)
+    
+    Args:
+        cnp (str): CNP-ul valid
+        
+    Returns:
+        dict: Informații extrase din CNP sau None dacă CNP invalid
+    """
+    if not validate_cnp(cnp):
+        return None
+    
+    try:
+        prima_cifra = int(cnp[0])
+        
+        # Determinare sex
+        sex = 'M' if prima_cifra % 2 == 1 else 'F'
+        
+        # Determinare secolul
+        if prima_cifra in [1, 2]:
+            secol = 1900
+        elif prima_cifra in [3, 4]:
+            secol = 1800
+        elif prima_cifra in [5, 6]:
+            secol = 2000
+        elif prima_cifra in [7, 8]:
+            secol = 1700
+        else:
+            return None
+        
+        # Extragere date
+        an = secol + int(cnp[1:3])
+        luna = int(cnp[3:5])
+        zi = int(cnp[5:7])
+        
+        # Calculare vârstă
+        today = datetime.now()
+        birth_date = datetime(an, luna, zi)
+        varsta = today.year - birth_date.year
+        if today.month < birth_date.month or (today.month == birth_date.month and today.day < birth_date.day):
+            varsta -= 1
+        
+        return {
+            'sex': sex,
+            'an': an,
+            'luna': luna,
+            'zi': zi,
+            'varsta': varsta,
+            'data_nasterii': f"{zi:02d}.{luna:02d}.{an}"
+        }
+        
+    except (ValueError, IndexError):
+        return None
+
 
 def get_statistics() -> Dict:
     """Obține statistici generale ale sistemului"""
@@ -264,10 +416,14 @@ def add_patient():
     """Adăugare pacient nou"""
     if request.method == 'POST':
         try:
-            # Validare CNP
+            # Validare CNP cu mesaj detaliat
             cnp = request.form['cnp'].strip()
-            if not validate_cnp(cnp):
-                flash('CNP invalid!', 'error')
+            
+            # Folosește funcția detaliată pentru debugging
+            is_valid, error_message = validate_cnp_detailed(cnp)
+            
+            if not is_valid:
+                flash(f'CNP invalid: {error_message}', 'error')
                 return render_template('patients/add.html')
             
             # Verificare unicitate CNP
@@ -276,12 +432,26 @@ def add_patient():
                 flash('Există deja un pacient cu acest CNP!', 'error')
                 return render_template('patients/add.html')
             
+            # Extrage informații din CNP pentru auto-completare
+            cnp_info = extract_info_from_cnp(cnp)
+            
+            # Folosește informațiile din CNP dacă sunt disponibile
+            sex_form = request.form.get('sex', '')
+            varsta_form = request.form.get('varsta', '')
+            
+            if cnp_info:
+                # Auto-completează sex și vârstă dacă nu sunt specificate
+                if not sex_form:
+                    sex_form = cnp_info['sex']
+                if not varsta_form:
+                    varsta_form = str(cnp_info['varsta'])
+            
             patient = Patient(
                 nume=request.form['nume'].strip().title(),
                 prenume=request.form['prenume'].strip().title(),
                 cnp=cnp,
-                varsta=int(request.form['varsta']),
-                sex=request.form['sex'],
+                varsta=int(varsta_form) if varsta_form else 0,
+                sex=sex_form,
                 telefon=request.form.get('telefon', '').strip(),
                 adresa=request.form.get('adresa', '').strip()
             )
@@ -311,8 +481,10 @@ def edit_patient(id: int):
         try:
             # Validare CNP
             cnp = request.form['cnp'].strip()
-            if not validate_cnp(cnp):
-                flash('CNP invalid!', 'error')
+            is_valid, error_message = validate_cnp_detailed(cnp)
+            
+            if not is_valid:
+                flash(f'CNP invalid: {error_message}', 'error')
                 return render_template('patients/edit.html', patient=patient)
             
             # Verificare unicitate CNP (excluding current patient)
@@ -375,7 +547,35 @@ def view_patient(id: int):
     
     return render_template('patients/view.html', patient=patient, analyses=analyses)
 
-# CRUD ANALIZE
+# API pentru validarea CNP în timp real
+@app.route('/api/validate-cnp/<cnp>')
+def api_validate_cnp(cnp):
+    """API pentru validarea CNP în timp real"""
+    is_valid, message = validate_cnp_detailed(cnp)
+    cnp_info = extract_info_from_cnp(cnp) if is_valid else None
+    
+    return jsonify({
+        'valid': is_valid,
+        'message': message,
+        'info': cnp_info
+    })
+
+# Ruta de test pentru CNP
+@app.route('/test-cnp/<cnp>')
+def test_cnp(cnp):
+    """Rută de test pentru validarea CNP"""
+    is_valid, message = validate_cnp_detailed(cnp)
+    cnp_info = extract_info_from_cnp(cnp)
+    
+    return jsonify({
+        'cnp': cnp,
+        'is_valid': is_valid,
+        'message': message,
+        'simple_validation': validate_cnp(cnp),
+        'extracted_info': cnp_info
+    })
+
+# CRUD ANALIZE (păstrez codul original pentru analize)
 @app.route('/analyses')
 def analyses_list():
     """Lista analize cu opțiuni de filtrare și sortare"""
@@ -691,49 +891,53 @@ def init_db():
         if Patient.query.first() is None:
             logger.info("Inițializare baza de date cu date de test...")
             
-            # Adaugă pacienți de test
+            # Adaugă pacienți de test cu CNP-uri valide
             patients_data = [
                 {
-                    'nume': 'Iordache',
-                    'prenume': 'Antonela',
-                    'cnp': '2750331270692',
-                    'varsta': 47,
-                    'sex': 'F',
+                    'nume': 'Popescu',
+                    'prenume': 'Ion',
+                    'cnp': '1900315234567',  # Masculin, 15.03.1990
+                    'varsta': 34,
+                    'sex': 'M',
                     'telefon': '0722123456',
                     'adresa': 'Strada Exemplu, Nr. 1, București'
                 },
                 {
-                    'nume': 'Popescu',
-                    'prenume': 'Ion',
-                    'cnp': '1800101123456',
-                    'varsta': 45,
-                    'sex': 'M',
+                    'nume': 'Ionescu',
+                    'prenume': 'Maria',
+                    'cnp': '2851205123456',  # Feminin, 05.12.1985
+                    'varsta': 38,
+                    'sex': 'F',
                     'telefon': '0733654321',
                     'adresa': 'Strada Test, Nr. 2, Cluj-Napoca'
                 },
                 {
                     'nume': 'Marinescu',
-                    'prenume': 'Maria',
-                    'cnp': '2851205123789',
-                    'varsta': 36,
-                    'sex': 'F',
+                    'prenume': 'Alexandru',
+                    'cnp': '5000101234567',  # Masculin, 01.01.2000
+                    'varsta': 24,
+                    'sex': 'M',
                     'telefon': '0744987654',
                     'adresa': 'Bulevardul Libertății, Nr. 15, Timișoara'
                 },
                 {
                     'nume': 'Georgescu',
-                    'prenume': 'Alexandru',
-                    'cnp': '1920315234567',
-                    'varsta': 32,
-                    'sex': 'M',
+                    'prenume': 'Ana',
+                    'cnp': '6950630123456',  # Feminin, 30.06.2095 (pentru test)
+                    'varsta': 29,
+                    'sex': 'F',
                     'telefon': '0755111222',
                     'adresa': 'Strada Florilor, Nr. 8, Constanța'
                 }
             ]
             
             for patient_data in patients_data:
-                patient = Patient(**patient_data)
-                db.session.add(patient)
+                # Verifică CNP-ul înainte de adăugare
+                if validate_cnp(patient_data['cnp']):
+                    patient = Patient(**patient_data)
+                    db.session.add(patient)
+                else:
+                    logger.warning(f"CNP invalid pentru pacientul {patient_data['nume']}: {patient_data['cnp']}")
             
             db.session.commit()
             
