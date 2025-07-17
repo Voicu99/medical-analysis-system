@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}Raport Pacient - {{ patient.nume }} {{ patient.prenume }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="fas fa-file-medical text-primary"></i> 
+                Raport Complet Pacient
+            </h1>
+            <div>
+                <button onclick="window.print()" class="btn btn-primary me-2">
+                    <i class="fas fa-print"></i> Printează
+                </button>
+                <a href="{{ url_for('view_patient', id=patient.id) }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Înapoi
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Informații Pacient -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-user-circle"></i> Informații Pacient
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="fw-bold">Nume complet:</td>
+                        <td>{{ patient.nume }} {{ patient.prenume }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">CNP:</td>
+                        <td class="font-monospace">{{ patient.cnp }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Vârsta:</td>
+                        <td>{{ patient.varsta }} ani</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Sex:</td>
+                        <td>{{ 'Masculin' if patient.sex == 'M' else 'Feminin' }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="fw-bold">Telefon:</td>
+                        <td>{{ patient.telefon or 'Nu este specificat' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Adresa:</td>
+                        <td>{{ patient.adresa or 'Nu este specificată' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Data înregistrării:</td>
+                        <td>{{ format_datetime(patient.created_at) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Total analize:</td>
+                        <td><span class="badge bg-info">{{ analyses|length }}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analize Medicale -->
+{% if analyses %}
+<div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-flask"></i> Istoric Analize Medicale
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Data</th>
+                        <th>Tip Analiză</th>
+                        <th>Rezultat</th>
+                        <th>Valori Normale</th>
+                        <th>Medic</th>
+                        <th>Laborator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for analysis in analyses %}
+                    <tr>
+                        <td>
+                            <strong>{{ format_date(analysis.data_rezultat) }}</strong><br>
+                            <small class="text-muted">Recoltare: {{ format_date(analysis.data_recoltare) }}</small>
+                        </td>
+                        <td>
+                            <strong>{{ analysis.tip_analiza }}</strong>
+                            {% if analysis.observatii %}
+                                <br><small class="text-info">{{ analysis.observatii }}</small>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div style="max-width: 200px; word-wrap: break-word;">
+                                {{ analysis.rezultat }}
+                            </div>
+                        </td>
+                        <td>
+                            <small class="text-muted">
+                                {{ analysis.valori_normale or 'Nu sunt specificate' }}
+                            </small>
+                        </td>
+                        <td>{{ analysis.medic or '-' }}</td>
+                        <td>{{ analysis.laborator or '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card mb-4">
+    <div class="card-body text-center">
+        <i class="fas fa-flask fa-3x text-muted mb-3"></i>
+        <h5 class="text-muted">Nu există analize pentru acest pacient</h5>
+        <p class="text-muted">Adaugă prima analiză pentru a genera un raport complet.</p>
+        <a href="{{ url_for('add_analysis') }}?patient_id={{ patient.id }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Adaugă Prima Analiză
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Rezumat și Observații -->
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-chart-line"></i> Rezumat Medical
+        </h5>
+    </div>
+    <div class="card-body">
+        {% if analyses %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h3 class="text-primary">{{ analyses|length }}</h3>
+                    <p class="text-muted">Total Analize</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h3 class="text-success">{{ analyses|map(attribute='tip_analiza')|unique|list|length }}</h3>
+                    <p class="text-muted">Tipuri Diferite</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h3 class="text-info">
+                        {% set recent_analyses = analyses|selectattr('data_rezultat')|list %}
+                        {% if recent_analyses %}
+                            {{ ((datetime.now().date() - recent_analyses[0].data_rezultat).days) }} zile
+                        {% else %}
+                            -
+                        {% endif %}
+                    </h3>
+                    <p class="text-muted">De la ultima analiză</p>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <h6><i class="fas fa-list"></i> Tipuri de analize efectuate:</h6>
+        <div class="d-flex flex-wrap gap-2">
+            {% for tip in analyses|map(attribute='tip_analiza')|unique %}
+                <span class="badge bg-secondary">{{ tip }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted text-center">
+            <i class="fas fa-info-circle"></i> 
+            Nu există suficiente date pentru a genera un rezumat medical.
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Footer Raport -->
+<div class="card">
+    <div class="card-body text-center bg-light">
+        <small class="text-muted">
+            <i class="fas fa-calendar"></i> Raport generat la data de {{ datetime.now().strftime('%d.%m.%Y %H:%M') }}<br>
+            <i class="fas fa-hospital"></i> Sistem Management Analize Medicale<br>
+            <strong>Important:</strong> Acest raport este generat automat și trebuie interpretat de un medic specialist.
+        </small>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Stiluri pentru printare
+window.addEventListener('beforeprint', function() {
+    document.body.classList.add('printing');
+});
+
+window.addEventListener('afterprint', function() {
+    document.body.classList.remove('printing');
+});
+</script>
+
+<style>
+@media print {
+    .btn, .navbar, .card-header { 
+        display: none !important; 
+    }
+    
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        margin-bottom: 20px !important;
+    }
+    
+    body {
+        font-size: 12px !important;
+    }
+    
+    .table {
+        font-size: 11px !important;
+    }
+}
+</style>
+{% endblock %}
