@@ -13,6 +13,7 @@ import logging
 from typing import Dict, List, Optional
 import os
 import random
+import sqlite3
 from werkzeug.utils import secure_filename
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.pdfgen import canvas
