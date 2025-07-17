@@ -62,7 +62,7 @@ medical-analysis-system/
 │   ├── reports/              # Template-uri pentru rapoarte
 │   │   ├── analysis_report.html    # Raport analiză individuală
 │   │   ├── patient_report.html     # Raport complet pacient
-│   │   └── statistics.html         # Raport statistici
+│   │ 
 │   │
 │   └── errors/               # Pagini de eroare
 │       ├── 404.html          # Pagină nu a fost găsită
