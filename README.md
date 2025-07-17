@@ -67,14 +67,7 @@ medical-analysis-system/
 │   └── errors/               # Pagini de eroare
 │       ├── 404.html          # Pagină nu a fost găsită
 │       └── 500.html          # Eroare server
-│
-├── static/                   # Fișiere statice (CSS, JS, imagini)
-│   ├── css/                  # Stiluri personalizate
-│   ├── js/                   # Script-uri JavaScript
-│   └── images/               # Imagini și logo-uri
-│
-└── uploads/                  # Fișiere încărcate (se generează automat)
-```
+
 
 ## 🛠️ Instalare și Configurare
 
